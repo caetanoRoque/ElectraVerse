@@ -7,6 +7,7 @@ const controllers = require("../controllers/produto.js")
 router.post("/cadastrar-produto/", controllers.cadastrarProduto)
 router.put("/editar-produto/", controllers.editarProduto)
 router.delete("/deletar-produto/", controllers.deletarProduto)
+router.get("/pegar-produto/", controllers.pegarProduto)
 
 // Exportando o router
 module.exports = router

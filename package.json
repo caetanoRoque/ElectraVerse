@@ -4,14 +4,17 @@
   "description": "API para o projeto de e-commerce",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
   },
   "author": "Johnn, Yuri e Caetano",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "nodemon": "^2.0.22",
     "pg": "^8.11.0"
   }
 }

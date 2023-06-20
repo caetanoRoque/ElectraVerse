@@ -18,3 +18,13 @@ exports.cadastrarCliente = (req, res) => {
     })
 }
 
+exports.logarCliente = (req, res) => {
+
+  const email = req.body.email;
+  const senha = req.body.senha;
+
+  Cliente.logarCliente(email,senha).then(
+      (response) => res.status(200).send(response.rows),
+      (error)    => res.status(404).send({'Erro':error}) 
+  );
+}

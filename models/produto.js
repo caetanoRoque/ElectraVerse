@@ -27,3 +27,7 @@ exports.deletarProduto = (valores) => {
     return database.query(query)
   }
 
+  exports.pegarProduto = () => {
+    const query = "SELECT * FROM produto;"
+    return database.query(query)
+  }

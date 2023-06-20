@@ -10,5 +10,12 @@ exports.cadastrarCliente = (valores) => {
     return database.query(query)
   }
 
-  // const query = `INSERT INTO CLIENTE (NOME, SENHA, EMAIL, TELEFONE, CPF, ENDERECO) VALUES (${valores.nome},${valores.senha},${valores.email},
-  //   ${valores.telefone},${valores.cpf},${valores.endereco});`
+// exports.logarCliente = () => {
+//     const query = "SELECT * FROM cliente;"
+//     return database.query(query)
+// }
+
+exports.logarCliente = (email,senha) => {
+    const query = `SELECT * FROM CLIENTE WHERE EMAIL='${email}' AND SENHA='${senha}'`;
+    return database.query(query);
+}

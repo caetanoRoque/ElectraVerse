@@ -48,3 +48,16 @@ exports.editarProduto = (req, res) => {
         res.status(500).send({ erro: erro });
       })
   }
+
+  exports.pegarProduto = (req, res) => {
+    // Chamando a função buscar_nome do models e passando valores de parâmetro
+    Produto.pegarProduto()
+    // Então se der certo exibir o resultado
+      .then((resultado) => {
+        res.status(200).send({ produtos: resultado.rows })
+      })
+    // Se der errado diga qual erro que deu
+      .catch((erro) => {
+        res.status(500).send({ erro: erro });
+      })
+  }

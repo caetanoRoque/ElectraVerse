@@ -5,7 +5,8 @@ const controllers = require("../controllers/vendedor.js")
 
 // Definindo o endpoint de buscar pelo nome
 router.post("/cadastrar-vendedor/", controllers.cadastrarVendedor)
-
+router.post("/logar-vendedor/", controllers.logarVendedor)
+// router.post('/logar-vendedor', controllers.logarVendedor);
 
 // Exportando o router
 module.exports = router

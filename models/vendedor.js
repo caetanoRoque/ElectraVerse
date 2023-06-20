@@ -9,3 +9,8 @@ exports.cadastrarVendedor = (valores) => {
     // Realizando a query passando de paramentros o select e valores
     return database.query(query)
   }
+
+exports.logarVendedor = (email,senha) => {
+    const query = `SELECT * FROM VENDEDOR WHERE EMAIL='${email}' AND SENHA='${senha}'`;
+    return database.query(query);
+}

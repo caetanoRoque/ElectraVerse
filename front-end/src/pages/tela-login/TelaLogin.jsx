@@ -1,7 +1,8 @@
 // import {getProdutos } from '../../apiConnectProduto'
 import { logarCliente } from '../../apiConnectCliente'
+import { logarVendedor } from '../../apiConnectVendedor'
 import "./tela-login.css"
-import { useEffect,useState } from 'react'
+import { useState } from 'react'
 
 export default function TelaLogin(){
     const [email, setEmail] = useState()
@@ -9,8 +10,19 @@ export default function TelaLogin(){
     
     const handleLogin = (event) => {
         event.preventDefault();
-        logarCliente(email,senha).then(cliente => console.log(cliente))
-        window.location.href = '/tela-principal'
+        
+        logarCliente(email,senha).then(cliente => {
+            if(cliente[0]?.email == email && cliente[0]?.senha == senha)
+                window.location.href = '/tela-principal'
+        })
+        
+        logarVendedor(email,senha).then(vendedor => {
+            if(vendedor[0]?.email == email && vendedor[0]?.senha == senha)
+                window.location.href = '/tela-principal'
+
+            else
+                alert('Email ou senha incorretos')
+        })
     }
 
     return(
@@ -31,7 +43,7 @@ export default function TelaLogin(){
                     <div className="links">
                         <a href="/tela-cadastro">Singup</a>
                     </div>
-                    <input type="submit" class="submit" value="login" />
+                    <input type="submit" className="submit" value="login" />
                 </form>
             </div>
         </section>        

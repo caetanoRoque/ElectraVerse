@@ -1,14 +1,14 @@
 import axios from 'axios'
 
-export async function logarCliente(email,senha){
-    const url = 'http://localhost:3000/cliente/logar-cliente';
+export async function logarVendedor(email,senha){
+    const url = 'http://localhost:3000/vendedor/logar-vendedor/';
     let data;
-    let cliente = {
+    let vendedor = {
         email: email,
         senha: senha
     }
 
-    await axios.post(url,cliente)
+    await axios.post(url,vendedor)
         .then(response => data = response.data)
         .catch(error   => data = error);
     
@@ -16,15 +16,15 @@ export async function logarCliente(email,senha){
 }
 
 export async function criarConta(nome,email,senha){
-    const url = 'http://localhost:3000/cliente/logar-cliente';
+    const url = 'http://localhost:3000/vendedor/cadastrar-vendedor/';
     let data;
-    let cliente = {
+    let vendedor = {
         nome: nome,
         email: email,
         senha: senha
     }
 
-    await axios.post(url,cliente)
+    await axios.post(url,vendedor)
         .then(response => data = response.data)
         .catch(error   => data = error);
     

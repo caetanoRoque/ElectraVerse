@@ -1,0 +1,101 @@
+.tela-principal{
+    display: flex;
+    /* position: absolute; */
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.carrinho{
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+
+
+
+.tela-principal header .barraPesquisa{
+    display: flex;
+    gap: 15px;
+}
+
+.tela-principal header .barraPesquisa input{
+    width: 700px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+    padding: 0 20px;
+} 
+.tela-principal header .barraPesquisa button{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background-color: white;
+    border: none;
+    transition: 0.2s;
+}
+
+.tela-principal header{
+    display: flex;
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    
+    justify-content: space-between;
+    padding: 10px 30px;
+    background-color: #17171b;
+    
+}
+.tela-principal .menu{
+    background-color: white;
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+.tela-principal section{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: max-content;
+    min-height: 100%;  
+    margin-top: 80px;
+}
+.tela-principal section .produtos{
+    background-color: #bbb;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    height: max-content;
+    gap: 10px;
+    padding-top: 20px;
+    width: 85%;
+} 
+.tela-principal section .produtos div{
+    height: 300px;
+    width: 40%;
+    background-color: #000;
+}
+
+.barraPesquisa button:hover{
+    transform: scale(110%);
+}
+
+.menu:hover{
+    background-color: rgb(19, 102, 255);
+    transform: scale(110%);
+}
+
+.carrinho:hover{
+    background-color: rgb(19, 102, 255);
+    transform: scale(110%);
+}

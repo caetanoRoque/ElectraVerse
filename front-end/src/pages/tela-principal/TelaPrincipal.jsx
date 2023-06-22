@@ -2,8 +2,29 @@ import Menu from "../../assets/menu.svg"
 import "./tela-principal.css"
 import Search from "../../assets/search.svg" 
 import Cart from "../../assets/cart.svg" 
+import { getProdutos } from "../../apiConnectProduto"
+import { useEffect,useState } from "react"
+import Produto from "../../components/produto/Produto"
 
 export default function TelaPrincipal(){
+    const [produtos, setProdutos] = useState(['a']);
+
+    useEffect(()=>{
+        getProdutos().then(produto=>{
+            
+            setProdutos(produto.produtos);
+        })
+    },[])
+
+    const mapProdutos = ()=>{
+        let componentes = produtos?.map((produto,key)=>{
+            return (
+                <Produto key={key} produto={produto}/>
+            )
+        })
+        return componentes;
+    }
+
     return(
         <div className="tela-principal">
           <header>
@@ -17,42 +38,7 @@ export default function TelaPrincipal(){
 
           <section>
                 <div className="produtos">
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
-                    <div>
-                        {/* <Produto/> */}
-                    </div>
+                    {mapProdutos()}
                 </div>
           </section>
         </div>

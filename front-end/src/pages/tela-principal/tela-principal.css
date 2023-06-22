@@ -68,7 +68,7 @@
     width: 100%;
     height: max-content;
     min-height: 100%;  
-    margin-top: 80px;
+    margin-top: 60px;
 }
 .tela-principal section .produtos{
     background-color: #bbb;
@@ -76,14 +76,15 @@
     flex-flow: wrap;
     justify-content: center;
     height: max-content;
-    gap: 10px;
-    padding-top: 20px;
+    gap: 20px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     width: 85%;
 } 
 .tela-principal section .produtos div{
     height: 300px;
-    width: 40%;
-    background-color: #000;
+    width: 30%;
+    background-color: white;
 }
 
 .barraPesquisa button:hover{

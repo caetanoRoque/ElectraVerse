@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import TelaLogin from './pages/tela-login/TelaLogin'
 import TelaPrincipal from './pages/tela-principal/TelaPrincipal'
 import './index.css'
-import {createBrowserRouter,RouterProvider,} from "react-router-dom";
+import {createBrowserRouter,RouterProvider} from "react-router-dom";
 
 const router = createBrowserRouter([
   {

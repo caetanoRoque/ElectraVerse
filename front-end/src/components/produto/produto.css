@@ -1,0 +1,7 @@
+.produto{
+    background-color: red;
+    display: flex;
+}
+.produto *{
+    border: solid 1px #000;
+}

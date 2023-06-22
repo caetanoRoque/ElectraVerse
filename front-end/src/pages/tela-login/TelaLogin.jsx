@@ -13,16 +13,19 @@ export default function TelaLogin(){
         
         logarCliente(email,senha).then(cliente => {
             if(cliente[0]?.email == email && cliente[0]?.senha == senha)
-                window.location.href = '/tela-principal'
+                    window.location.href = '/tela-principal'                    
+
+            else{
+                logarVendedor(email,senha).then(vendedor => {
+                    if(vendedor[0]?.email == email && vendedor[0]?.senha == senha)
+                        window.location.href = '/tela-principal'
+        
+                    else
+                        alert('Email ou senha incorretos')
+                })
+            }
         })
         
-        logarVendedor(email,senha).then(vendedor => {
-            if(vendedor[0]?.email == email && vendedor[0]?.senha == senha)
-                window.location.href = '/tela-principal'
-
-            else
-                alert('Email ou senha incorretos')
-        })
     }
 
     return(

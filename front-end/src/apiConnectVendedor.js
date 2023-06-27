@@ -15,7 +15,7 @@ export async function logarVendedor(email,senha){
     return data;
 }
 
-export async function criarConta(nome,email,senha){
+export async function criarVendedor(nome,email,senha){
     const url = 'http://localhost:3000/vendedor/cadastrar-vendedor/';
     let data;
     let vendedor = {

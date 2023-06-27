@@ -10,12 +10,11 @@ exports.cadastrarCliente = (valores) => {
     return database.query(query)
   }
 
-// exports.logarCliente = () => {
-//     const query = "SELECT * FROM cliente;"
-//     return database.query(query)
-// }
-
 exports.logarCliente = (email,senha) => {
     const query = `SELECT * FROM CLIENTE WHERE EMAIL='${email}' AND SENHA='${senha}'`;
+    return database.query(query);
+}
+exports.getClientes = () => {
+    const query = `SELECT * FROM CLIENTE`;
     return database.query(query);
 }

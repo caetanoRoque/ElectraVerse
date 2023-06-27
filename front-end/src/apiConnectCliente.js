@@ -15,13 +15,16 @@ export async function logarCliente(email,senha){
     return data;
 }
 
-export async function criarConta(nome,email,senha){
+export async function criarCliente(nome,email,senha,cpf,endereco,telefone){
     const url = 'http://localhost:3000/cliente/logar-cliente';
     let data;
     let cliente = {
         nome: nome,
         email: email,
-        senha: senha
+        senha: senha,
+        cpf: cpf,
+        endereco: endereco,
+        telefone: telefone,
     }
 
     await axios.post(url,cliente)

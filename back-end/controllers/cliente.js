@@ -28,3 +28,10 @@ exports.logarCliente = (req, res) => {
       (error)    => res.status(404).send({'Erro':error}) 
   );
 }
+exports.getClientes = (req, res) => {
+
+  Cliente.getClientes().then(
+      (response) => res.status(200).send(response.rows),
+      (error)    => res.status(404).send({'Erro':error}) 
+  );
+}

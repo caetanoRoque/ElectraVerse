@@ -5,18 +5,24 @@ export default function Produto(p){
     console.log(p.produto)
     return(
         <div className="produto">
-            <figure>
-                <img src={p.produto?.imagem}/>
-            </figure>
             
-            <div className="info">
-                <p className="nome">{p.produto?.nome}</p>
-                <p className="preco">{p.produto?.preco}</p>
+            <p className="estoque">{p.produto.estoque} un</p>
+
+            <article>
+                <figure>
+                    <img src={p.produto.imagem} alt="" />
+                </figure>
+                <div className="info">
+                    <p>{p.produto.nome}</p>
+                    <label>R$ {p.produto.preco?.replace('.',',')}</label>
+                </div>
+                
+            </article>
+            
+            <div className="comprar">
+                <button>COMPRAR</button>
             </div>
 
-            <p className="estoque">{p.produto?.estoque}</p>
-            <p className="categoria">{p.produto?.categoria}</p>
-            <p className="descricao">{p.produto?.descricao}</p>
         </div>
     )
 }

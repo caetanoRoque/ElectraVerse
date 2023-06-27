@@ -37,9 +37,9 @@ export default function TelaPrincipal(){
           </header>
 
           <section>
-                <div className="produtos">
                     {mapProdutos()}
-                </div>
+                    {mapProdutos()}
+                    {mapProdutos()}
           </section>
         </div>
     )

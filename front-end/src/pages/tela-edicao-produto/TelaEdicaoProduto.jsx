@@ -4,41 +4,6 @@ import { criarCliente } from '../../apiConnectCliente'
 import { criarVendedor } from '../../apiConnectVendedor'
 
 export default function TelaEdicaoProduto(){
-    const [nome, setNome] = useState()
-    const [email, setEmail] = useState()
-    const [senha, setSenha] = useState()
-    const [telefone, setTelefone] = useState()
-    const [inscricao, setInscricao] = useState()
-    const [endereco, setEndereco] = useState()
-    const [tipo, setTipo] = useState('cliente')
-    
-    const handleLogin = (event) => {
-
-        event.preventDefault();
-        if(tipo == 'cliente'){
-            criarCliente(nome,email,senha,telefone,inscricao,endereco).then(cliente => {
-                if(cliente == 'erro'){
-                    alert('Email já cadastrado');
-                }
-                else{
-                    alert("Cliente cadastrado com sucesso")
-                    window.location.href = '/'
-                }
-            })
-        }
-
-        if(tipo == 'vendedor'){
-            criarVendedor(nome,email,senha,telefone,inscricao,endereco).then(vendedor => {
-                if(vendedor == 'erro'){
-                    alert('Email já cadastrado');
-                }
-                else{
-                    alert("Vendedor cadastrado com sucesso")
-                    window.location.href = '/'
-                }
-            })
-        }  
-    }
     
     return(
         <section className='tela-cadastro'>

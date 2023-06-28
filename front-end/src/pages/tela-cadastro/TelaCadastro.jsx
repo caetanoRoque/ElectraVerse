@@ -2,6 +2,7 @@ import './tela-cadastro.css'
 import { useState } from 'react'
 import { criarCliente } from '../../apiConnectCliente'
 import { criarVendedor } from '../../apiConnectVendedor'
+import { useNavigate } from 'react-router-dom'
 
 export default function TelaCadastro(){
     const [nome, setNome] = useState()
@@ -11,6 +12,7 @@ export default function TelaCadastro(){
     const [inscricao, setInscricao] = useState()
     const [endereco, setEndereco] = useState()
     const [tipo, setTipo] = useState('cliente')
+    const navigate = useNavigate();
     
     const handleLogin = (event) => {
 
@@ -22,7 +24,7 @@ export default function TelaCadastro(){
                 }
                 else{
                     alert("Cliente cadastrado com sucesso")
-                    window.location.href = '/'
+                    return navigate('/')
                 }
             })
         }
@@ -34,7 +36,7 @@ export default function TelaCadastro(){
                 }
                 else{
                     alert("Vendedor cadastrado com sucesso")
-                    window.location.href = '/'
+                    return navigate('/')
                 }
             })
         }  

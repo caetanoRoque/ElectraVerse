@@ -3,13 +3,18 @@ import "./tela-principal.css"
 import Search from "../../assets/search.svg" 
 import Cart from "../../assets/cart.svg" 
 import { getProdutos } from "../../apiConnectProduto"
-import { useEffect,useState } from "react"
+import { useEffect,useState,useContext } from "react"
 import Produto from "../../components/produto/Produto"
+import { useNavigate } from 'react-router-dom'
+import { LoginContext } from "../../context/LoginContext"
 
 export default function TelaPrincipal(){
     const [produtos, setProdutos] = useState(['a']);
+    const navigate = useNavigate()
 
     useEffect(()=>{
+        setLogado(localStorage.getItem("logado"))
+
         getProdutos().then(produto=>{
             
             setProdutos(produto.produtos);
@@ -28,7 +33,7 @@ export default function TelaPrincipal(){
     return(
         <div className="tela-principal">
           <header>
-            <div className="menu"><img src={Menu} width="40px" alt="" /></div>
+            <div className="menu" ><img src={Menu} width="40px" alt="" /></div>
             <div className="barraPesquisa">
               <input type="text" />
               <button><img src={Search} width="30px" alt="" /></button>

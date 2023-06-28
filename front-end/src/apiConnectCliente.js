@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 export async function logarCliente(email,senha){
+    console.log(email)
+    console.log(senha)
     const url = 'http://localhost:3000/cliente/logar-cliente';
     let data;
     let cliente = {
@@ -9,27 +11,30 @@ export async function logarCliente(email,senha){
     }
 
     await axios.post(url,cliente)
-        .then(response => data = response.data)
+        .then(response => {
+            console.log(cliente)
+            data = response.data
+        })
         .catch(error   => data = error);
     
     return data;
 }
 
-export async function criarCliente(nome,email,senha,cpf,endereco,telefone){
-    const url = 'http://localhost:3000/cliente/logar-cliente';
+export async function criarCliente(nome,email,senha,telefone,inscricao,endereco){
+    const url = 'http://localhost:3000/cliente/cadastrar-cliente';
     let data;
     let cliente = {
         nome: nome,
         email: email,
         senha: senha,
-        cpf: cpf,
+        inscricao: inscricao,
         endereco: endereco,
         telefone: telefone,
     }
 
     await axios.post(url,cliente)
-        .then(response => data = response.data)
-        .catch(error   => data = error);
+        .then(()    => data = 'cadastrado')
+        .catch(()   => data = 'erro');
     
     return data;
 }

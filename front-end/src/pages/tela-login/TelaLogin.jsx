@@ -12,6 +12,8 @@ export default function TelaLogin(){
         event.preventDefault();
         
         logarCliente(email,senha).then(cliente => {
+            console.log(email)
+            console.log(senha)
             if(cliente[0]?.email == email && cliente[0]?.senha == senha)
                     window.location.href = '/tela-principal'                    
 

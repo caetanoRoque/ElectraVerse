@@ -14,7 +14,7 @@ exports.cadastrarCliente = (req, res) => {
     })
   // Se der errado diga qual erro que deu
     .catch((erro) => {
-      res.status(500).send({ erro: erro });
+      res.status(500).send( "Email já cadastrado." );
     })
 }
 
@@ -25,13 +25,13 @@ exports.logarCliente = (req, res) => {
 
   Cliente.logarCliente(email,senha).then(
       (response) => res.status(200).send(response.rows),
-      (error)    => res.status(404).send({'Erro':error}) 
+      (error)    => res.status(404).send('erro') 
   );
 }
 exports.getClientes = (req, res) => {
 
   Cliente.getClientes().then(
       (response) => res.status(200).send(response.rows),
-      (error)    => res.status(404).send({'Erro':error}) 
+      (error)    => res.status(404).send('erro') 
   );
 }

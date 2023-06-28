@@ -14,7 +14,7 @@ exports.cadastrarVendedor = (req, res) => {
     })
   // Se der errado diga qual erro que deu
     .catch((erro) => {
-      res.status(500).send({ erro: erro });
+      res.status(500).send("Email já cadastrado.");
     })
 }
 

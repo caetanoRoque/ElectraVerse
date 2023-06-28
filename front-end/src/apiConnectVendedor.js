@@ -14,19 +14,21 @@ export async function logarVendedor(email,senha){
     
     return data;
 }
-
-export async function criarVendedor(nome,email,senha){
-    const url = 'http://localhost:3000/vendedor/cadastrar-vendedor/';
+export async function criarVendedor(nome,email,senha,telefone,inscricao,endereco){
+    const url = 'http://localhost:3000/vendedor/cadastrar-vendedor';
     let data;
     let vendedor = {
         nome: nome,
         email: email,
-        senha: senha
+        senha: senha,
+        inscricao: inscricao,
+        endereco: endereco,
+        telefone: telefone,
     }
 
     await axios.post(url,vendedor)
-        .then(response => data = response.data)
-        .catch(error   => data = error);
+        .then(()    => data = 'cadastrado')
+        .catch(()   => data = 'erro');
     
     return data;
 }

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { criarCliente } from '../../apiConnectCliente'
 import { criarVendedor } from '../../apiConnectVendedor'
 
-export default function TelaCadastro(){
+export default function TelaEdicaoProduto(){
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
@@ -81,10 +81,7 @@ export default function TelaCadastro(){
                         <option value="cliente">Cliente</option>
                         <option value="vendedor">Vendedor</option>
                     </select>
-                </div>
-
-                
-                
+                </div>       
             </form>
         </div>
     </section>  

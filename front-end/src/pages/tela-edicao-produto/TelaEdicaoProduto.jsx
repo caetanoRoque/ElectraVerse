@@ -1,86 +1,90 @@
-import './tela-cadastro.css'
-import { useState } from 'react'
+import './tela-edicao-produto.css'
+import { useState , useEffect} from 'react'
 import { criarCliente } from '../../apiConnectCliente'
 import { criarVendedor } from '../../apiConnectVendedor'
+import { getProdutos, putProduto} from "../../apiConnectProduto"
 
 export default function TelaEdicaoProduto(){
     const [nome, setNome] = useState()
-    const [email, setEmail] = useState()
-    const [senha, setSenha] = useState()
-    const [telefone, setTelefone] = useState()
-    const [inscricao, setInscricao] = useState()
-    const [endereco, setEndereco] = useState()
-    const [tipo, setTipo] = useState('cliente')
+    const [preco, setPreco] = useState()
+    const [estoque, setEstoque] = useState()
+    const [categoria, setCategoria] = useState()
+    const [descricao, setDescricao] = useState()
+    const [imagem, setImagem] = useState()
+    const [produtos, setProdutos] = useState([])
+    const [id_produto, setIdProduto] = useState("")
     
-    const handleLogin = (event) => {
+    useEffect(()=>{
+        getProdutos().then(produto=>{
+            setProdutos(produto.produtos);
+        })
+    },[])
 
+    const handleEditar = (event) => {
         event.preventDefault();
-        if(tipo == 'cliente'){
-            criarCliente(nome,email,senha,telefone,inscricao,endereco).then(cliente => {
-                if(cliente == 'erro'){
-                    alert('Email já cadastrado');
-                }
-                else{
-                    alert("Cliente cadastrado com sucesso")
-                    window.location.href = '/'
-                }
-            })
-        }
+        console.log(id_produto)
+        putProduto({id_produto,preco,nome,estoque,categoria,descricao,imagem}).then(
+            (resposta)=>{
+                console.log(resposta)
+            }
+        )
 
-        if(tipo == 'vendedor'){
-            criarVendedor(nome,email,senha,telefone,inscricao,endereco).then(vendedor => {
-                if(vendedor == 'erro'){
-                    alert('Email já cadastrado');
-                }
-                else{
-                    alert("Vendedor cadastrado com sucesso")
-                    window.location.href = '/'
-                }
-            })
-        }  
+    }
+
+    const mapProdutos = ()=>{
+        let options = produtos?.map((produto,key)=>{
+            return (
+                <option key={key} value={produto.id_produto}>{produto.nome}</option>
+            )
+        })
+        return options;
     }
     
     return(
         <section className='tela-cadastro'>
         <div className="box">
-            <form onSubmit={()=>handleLogin(event)}>
-                <h2>Cadastro</h2>
+            <form onSubmit={()=>handleEditar(event)}>
+                <h2>Editar Produto</h2>
+                <div className="select">
+                    <label >Produto editado: </label>
+                    <select name="select" onChange={(e)=>setIdProduto(e.target.value)}>
+                        <option value=""></option>
+                        {mapProdutos()}
+                    </select>
+
+                </div>
                 <div className="inputBox">
                     <input type="text" onChange={(e)=> setNome(e.target.value)} required="required" />
                     <span>Nome</span>
                     <i></i>
                 </div>
                 <div className="inputBox">
-                    <input type="text" onChange={(e)=> setEmail(e.target.value)} required="required" />
-                    <span>Email</span>
+                    <input type="text" onChange={(e)=> setPreco(e.target.value)} required="required" />
+                    <span>Preço</span>
                     <i></i>
                 </div>
                 <div className="inputBox">
-                    <input type="password" onChange={(e)=> setSenha(e.target.value)} required="required" />
-                    <span>Senha</span>
+                    <input type="text" onChange={(e)=> setEstoque(e.target.value)} required="required" />
+                    <span>Estoque</span>
                     <i></i>
                 </div>
                 <div className="inputBox">
-                    <input type="text" onChange={(e)=> setTelefone(e.target.value)} required="required" />
-                    <span>Telefone</span>
+                    <input type="text" onChange={(e)=> setCategoria(e.target.value)} required="required" />
+                    <span>Categoria</span>
                     <i></i>
                 </div>
                 <div className="inputBox">
-                    <input type="text" onChange={(e)=> setInscricao(e.target.value)} required="required" />
-                    <span>CPF</span>
+                    <input type="text" onChange={(e)=> setDescricao(e.target.value)} required="required" />
+                    <span>Descrição</span>
                     <i></i>
                 </div>
                 <div className="inputBox">
-                    <input type="text" onChange={(e)=> setEndereco(e.target.value)} required="required" />
-                    <span>Endereço</span>
+                    <input type="text" onChange={(e)=> setImagem(e.target.value)} required="required" />
+                    <span>Imagem</span>
                     <i></i>
                 </div>
                 <div className='select'>
-                    <input type="submit" className="submit" value="Cadastrar" />
-                    <select onChange={(e)=>setTipo(e.target.value)}>
-                        <option value="cliente">Cliente</option>
-                        <option value="vendedor">Vendedor</option>
-                    </select>
+                    <input type="submit" className="submit" value="Editar" />
                 </div>       
             </form>
         </div>

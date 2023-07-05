@@ -14,7 +14,7 @@ exports.cadastrarProduto = (valores) => {
 exports.editarProduto = (valores) => {
     // Select pegando o nome que for igual a valores
     const query = `UPDATE PRODUTO SET NOME='${valores.nome}', PRECO='${valores.preco}', ESTOQUE='${valores.estoque}', CATEGORIA='${valores.categoria}', 
-   DESCRICAO='${valores.descricao}', IMAGEM='${valores.imagem}' WHERE ID_PRODUTO=${valores.id};`
+   DESCRICAO='${valores.descricao}', IMAGEM='${valores.imagem}' WHERE ID_PRODUTO=${valores.id_produto};`
     // Realizando a query passando de paramentros o select e valores
     return database.query(query)
   }

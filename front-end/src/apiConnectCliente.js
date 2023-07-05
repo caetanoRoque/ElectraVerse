@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function logarCliente(email,senha){
+export async function getCliente(email,senha){
     console.log(email)
     console.log(senha)
     const url = 'http://localhost:3000/cliente/logar-cliente';

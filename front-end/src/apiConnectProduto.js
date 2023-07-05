@@ -22,11 +22,13 @@ export async function postProduto(produto){
     return data;
 }
 
-export async function putProduto(id,estoque){
-    const url = 'http://localhost:3000/produto/editar-produto'+id;
+export async function putProduto(produto){
+    const url = 'http://localhost:3000/produto/editar-produto';
     let data;
 
-    await axios.put(url,estoque)
+    console.log(produto)
+
+    await axios.put(url,produto)
         .then(response => data = response.data)
         .catch(error   => data = error);
     

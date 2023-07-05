@@ -1,26 +1,37 @@
 // import {getProdutos } from '../../apiConnectProduto'
-import { logarCliente } from '../../apiConnectCliente'
-import { logarVendedor } from '../../apiConnectVendedor'
+import { getCliente } from '../../apiConnectCliente'
+import { getVendedor } from '../../apiConnectVendedor'
 import "./tela-login.css"
 import { useState } from 'react'
+
+import { useContext } from 'react'
+import { UsuarioContext } from '../../context/UsuarioContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function TelaLogin(){
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
-    
+
+    const {logarCliente} = useContext(UsuarioContext);
+    const navigate = useNavigate();
+
     const handleLogin = (event) => {
         event.preventDefault();
         
-        logarCliente(email,senha).then(cliente => {
-            console.log(email)
-            console.log(senha)
-            if(cliente[0]?.email == email && cliente[0]?.senha == senha)
-                    window.location.href = '/tela-principal'                    
+        getCliente(email,senha).then(cliente => {
+            console.log(email);
+            console.log(senha);
+            if(cliente[0]?.email == email && cliente[0]?.senha == senha){
+                logarCliente();
+                navigate('/tela-cliente-produtos');
+            }
 
             else{
-                logarVendedor(email,senha).then(vendedor => {
-                    if(vendedor[0]?.email == email && vendedor[0]?.senha == senha)
-                        window.location.href = '/tela-principal'
+                getVendedor(email,senha).then(vendedor => {
+                    if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
+                        logarVendedor();
+                        navigate('/tela-cliente-produtos');
+                    }
         
                     else
                         alert('Email ou senha incorretos')

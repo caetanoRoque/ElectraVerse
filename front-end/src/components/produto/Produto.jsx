@@ -2,7 +2,6 @@ import "./produto.css"
 
 export default function Produto(p){
 
-    console.log(p.produto)
     return(
         <div className="produto">
             

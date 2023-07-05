@@ -61,6 +61,10 @@
     align-items: center;
     transition: 0.2s;
 }
+.tela-principal .menu img{
+    margin-right: 5px;
+}
+
 .tela-principal section{
     display: flex;
     justify-content: center;

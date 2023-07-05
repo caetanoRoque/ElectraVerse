@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function logarVendedor(email,senha){
+export async function getVendedor(email,senha){
     const url = 'http://localhost:3000/vendedor/logar-vendedor/';
     let data;
     let vendedor = {

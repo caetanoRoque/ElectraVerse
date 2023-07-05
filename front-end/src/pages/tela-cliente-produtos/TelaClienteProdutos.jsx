@@ -1,13 +1,20 @@
-import Menu from "../../assets/menu.svg"  
-import "./tela-principal.css"
+import Logout from "../../assets/logout.svg"  
+import "./tela-cliente-produtos.css"
 import Search from "../../assets/search.svg" 
 import Cart from "../../assets/cart.svg" 
 import { getProdutos } from "../../apiConnectProduto"
 import { useEffect,useState } from "react"
 import Produto from "../../components/produto/Produto"
 
-export default function TelaPrincipal(){
+import { useContext } from "react";
+import { UsuarioContext } from '../../context/UsuarioContext';
+import { useNavigate } from 'react-router-dom'
+
+export default function TelaClienteProdutos(){
     const [produtos, setProdutos] = useState(['a']);
+
+    const {deslogarCliente} = useContext(UsuarioContext)
+    const navigate = useNavigate();
 
     useEffect(()=>{
         getProdutos().then(produto=>{
@@ -25,10 +32,17 @@ export default function TelaPrincipal(){
         return componentes;
     }
 
+    const handleDeslogar = () => {
+        deslogarCliente()
+        return navigate('/')
+    }
+
     return(
         <div className="tela-principal">
           <header>
-            <div className="menu"><img src={Menu} width="40px" alt="" /></div>
+            <div className="menu" onClick={()=>handleDeslogar()}>
+                <img src={Logout} width="33px" alt="Menu" />
+                </div>
             <div className="barraPesquisa">
               <input type="text" />
               <button><img src={Search} width="30px" alt="" /></button>

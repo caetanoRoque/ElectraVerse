@@ -4,40 +4,56 @@ import { getVendedor } from '../../apiConnectVendedor'
 import "./tela-login.css"
 import { useState } from 'react'
 
-import { useContext } from 'react'
-import { UsuarioContext } from '../../context/UsuarioContext'
 import { useNavigate } from 'react-router-dom'
+import { logarCliente, logarVendedor } from '../../logarDeslogar'
 
 export default function TelaLogin(){
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
 
-    const {logarCliente} = useContext(UsuarioContext);
     const navigate = useNavigate();
 
     const handleLogin = (event) => {
         event.preventDefault();
-        
-        getCliente(email,senha).then(cliente => {
-            console.log(email);
-            console.log(senha);
-            if(cliente[0]?.email == email && cliente[0]?.senha == senha){
-                logarCliente();
-                navigate('/tela-cliente-produtos');
-            }
 
-            else{
-                getVendedor(email,senha).then(vendedor => {
-                    if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
-                        logarVendedor();
-                        navigate('/tela-cliente-produtos');
-                    }
-        
-                    else
-                        alert('Email ou senha incorretos')
-                })
-            }
+        new Promise(
+            async (resolve) =>
+        {
+            await getCliente(email,senha).then(cliente => {
+                if(cliente[0]?.email == email && cliente[0]?.senha == senha){
+                    logarCliente();
+                    resolve(navigate('/tela-cliente-produtos'));
+                }
+            })
+
+            await getVendedor(email, senha).then(vendedor => {
+                if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
+                    logarVendedor();
+                    resolve(navigate('/tela-editar-produto'))
+                }
+            })
+            
+            alert("Email ou senha incorreta")
         })
+
+        // getCliente(email,senha).then(cliente => {
+        //     if(cliente[0]?.email == email && cliente[0]?.senha == senha){
+        //         logarCliente();
+        //         navigate('/tela-cliente-produtos');
+        //     }
+
+        //     else{
+        //         getVendedor(email,senha).then(vendedor => {
+        //             if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
+        //                 logarVendedor();
+        //                 navigate('/tela-cliente-produtos');
+        //             }
+        
+        //             else
+        //                 alert('Email ou senha incorretos')
+        //         })
+        //     }
+        // })
         
     }
 

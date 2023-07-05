@@ -4,7 +4,7 @@ import { criarCliente } from '../../apiConnectCliente'
 import { criarVendedor } from '../../apiConnectVendedor'
 import { getProdutos, putProduto} from "../../apiConnectProduto"
 
-export default function TelaEdicaoProduto(){
+export default function TelaEdicaoProduto({setVendedorLogado}){
     const [nome, setNome] = useState()
     const [preco, setPreco] = useState()
     const [estoque, setEstoque] = useState()
@@ -22,13 +22,13 @@ export default function TelaEdicaoProduto(){
 
     const handleEditar = (event) => {
         event.preventDefault();
-        console.log(id_produto)
+        
         putProduto({id_produto,preco,nome,estoque,categoria,descricao,imagem}).then(
             (resposta)=>{
-                console.log(resposta)
+                if(resposta != 'Produto cadastrado com sucesso')
+                    alert('Campos inválidos');
             }
         )
-
     }
 
     const mapProdutos = ()=>{
@@ -48,7 +48,7 @@ export default function TelaEdicaoProduto(){
                 <div className="select">
                     <label >Produto editado: </label>
                     <select name="select" onChange={(e)=>setIdProduto(e.target.value)}>
-                        <option value=""></option>
+                        <option value="">Selecione um produto</option>
                         {mapProdutos()}
                     </select>
 

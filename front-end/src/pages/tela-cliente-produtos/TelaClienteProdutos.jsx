@@ -6,19 +6,15 @@ import { getProdutos } from "../../apiConnectProduto"
 import { useEffect,useState } from "react"
 import Produto from "../../components/produto/Produto"
 
-import { useContext } from "react";
-import { UsuarioContext } from '../../context/UsuarioContext';
 import { useNavigate } from 'react-router-dom'
+import { deslogarCliente } from "../../logarDeslogar"
 
-export default function TelaClienteProdutos(){
-    const [produtos, setProdutos] = useState(['a']);
-
-    const {deslogarCliente} = useContext(UsuarioContext)
+export default function TelaClienteProdutos({setClienteLogado}){
+    const [produtos, setProdutos] = useState([]);
     const navigate = useNavigate();
 
     useEffect(()=>{
         getProdutos().then(produto=>{
-            
             setProdutos(produto.produtos);
         })
     },[])
@@ -34,6 +30,7 @@ export default function TelaClienteProdutos(){
 
     const handleDeslogar = () => {
         deslogarCliente()
+        setClienteLogado('false');
         return navigate('/')
     }
 
@@ -51,6 +48,7 @@ export default function TelaClienteProdutos(){
           </header>
 
           <section>
+                    {mapProdutos()}
                     {mapProdutos()}
                     {mapProdutos()}
                     {mapProdutos()}

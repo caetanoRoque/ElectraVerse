@@ -26,7 +26,7 @@ export async function putProduto(produto){
     const url = 'http://localhost:3000/produto/editar-produto';
     let data;
 
-    console.log(produto)
+    
 
     await axios.put(url,produto)
         .then(response => data = response.data)

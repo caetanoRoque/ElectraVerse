@@ -6,7 +6,7 @@ import { getProdutos, putProduto} from "../../apiConnectProduto"
 
 export default function TelaEdicaoProduto({setVendedorLogado}){
     const [nome, setNome] = useState()
-    const [preco, setPreco] = useState()
+    const [preco, setPreco] = useState("")
     const [estoque, setEstoque] = useState()
     const [categoria, setCategoria] = useState()
     const [descricao, setDescricao] = useState()
@@ -23,13 +23,19 @@ export default function TelaEdicaoProduto({setVendedorLogado}){
     const handleEditar = (event) => {
         event.preventDefault();
         
+        
         putProduto({id_produto,preco,nome,estoque,categoria,descricao,imagem}).then(
             (resposta)=>{
-                if(resposta != 'Produto cadastrado com sucesso')
+                if(resposta.mensagem != 'Produto editado com sucesso')
                     alert('Campos inválidos');
+                else{
+                    alert('Produto editado com sucesso!')
+                }
             }
         )
     }
+
+    
 
     const mapProdutos = ()=>{
         let options = produtos?.map((produto,key)=>{
@@ -48,7 +54,7 @@ export default function TelaEdicaoProduto({setVendedorLogado}){
                 <div className="select">
                     <label >Produto editado: </label>
                     <select name="select" onChange={(e)=>setIdProduto(e.target.value)}>
-                        <option value="">Selecione um produto</option>
+                        <option value=""></option>
                         {mapProdutos()}
                     </select>
 

@@ -13,13 +13,13 @@ export default function TelaLogin(){
 
     const navigate = useNavigate();
 
-    const handleLogin = (event) => {
-        event.preventDefault();
+    const handleLogin = async (event) => {
 
-        new Promise(
-            async (resolve) =>
+        const promise = new Promise(
+            async (resolve,reject) =>
         {
             await getCliente(email,senha).then(cliente => {
+
                 if(cliente[0]?.email == email && cliente[0]?.senha == senha){
                     logarCliente();
                     resolve(navigate('/tela-cliente-produtos'));
@@ -32,29 +32,14 @@ export default function TelaLogin(){
                     resolve(navigate('/tela-editar-produto'))
                 }
             })
-            
-            alert("Email ou senha incorreta")
+
+            resolve('erro')  
         })
-
-        // getCliente(email,senha).then(cliente => {
-        //     if(cliente[0]?.email == email && cliente[0]?.senha == senha){
-        //         logarCliente();
-        //         navigate('/tela-cliente-produtos');
-        //     }
-
-        //     else{
-        //         getVendedor(email,senha).then(vendedor => {
-        //             if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
-        //                 logarVendedor();
-        //                 navigate('/tela-cliente-produtos');
-        //             }
         
-        //             else
-        //                 alert('Email ou senha incorretos')
-        //         })
-        //     }
-        // })
-        
+        if(await promise == 'erro'){
+            alert('Campos inválidos')
+        }
+        event.preventDefault();
     }
 
     return(

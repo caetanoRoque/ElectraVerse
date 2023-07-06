@@ -35,8 +35,9 @@ export default function Router(){
   },[])
     
   const checkIsLogin = () => {
-
-    if(clienteLogado == "true")  return <Navigate to='/tela-cliente-produtos'/>
+    if(clienteLogado == "true"){
+      return <Navigate to='/tela-cliente-produtos'/>
+    } 
     if(localStorage.vendedorLogado == "true") return <Navigate to="/tela-edicao-produto"/>
   }
 
@@ -47,7 +48,7 @@ export default function Router(){
     },
     {
       path: "/",
-      element: checkIsLogin('/') || <TelaLogin/>,
+      element: checkIsLogin() || <TelaLogin/>,
     },
     {
       path: "/tela-cliente-produtos",

@@ -1,17 +1,16 @@
-import Logout from "../../assets/logout.svg"  
 import "./tela-cliente-produtos.css"
+import Logout from "../../assets/logout.svg"  
 import Search from "../../assets/search.svg" 
 import Cart from "../../assets/cart.svg" 
-import { getProdutos } from "../../apiConnectProduto"
-import { useEffect,useState } from "react"
+
 import Produto from "../../components/produto/Produto"
+import { useEffect,useState, useContext } from "react"
+import { getProdutos } from "../../connectApi/produto"
+import { LoginContext } from "../../context/LoginContext"
 
-import { useNavigate } from 'react-router-dom'
-import { deslogarCliente } from "../../logarDeslogar"
-
-export default function TelaClienteProdutos({setClienteLogado}){
+export default function TelaClienteProdutos(){
     const [produtos, setProdutos] = useState([]);
-    const navigate = useNavigate();
+    const { deslogarCliente } = useContext(LoginContext);
 
     useEffect(()=>{
         getProdutos().then(produto=>{
@@ -29,9 +28,9 @@ export default function TelaClienteProdutos({setClienteLogado}){
     }
 
     const handleDeslogar = () => {
-        deslogarCliente()
-        setClienteLogado('false');
-        return navigate('/')
+        localStorage.removeItem('clienteEmail');
+        localStorage.removeItem('clienteSenha');
+        deslogarCliente();
     }
 
     return(

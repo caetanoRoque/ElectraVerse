@@ -78,16 +78,16 @@
     flex-flow: wrap;
 }
 
-.barraPesquisa button:hover{
+.tela-principal .barraPesquisa button:hover{
     transform: scale(110%);
 }
 
-.menu:hover{
+.tela-principal .menu:hover{
     background-color: rgb(19, 102, 255);
     transform: scale(110%);
 }
 
-.carrinho:hover{
+.tela-principal .carrinho:hover{
     background-color: rgb(19, 102, 255);
     transform: scale(110%);
 }

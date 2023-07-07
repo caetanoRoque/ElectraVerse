@@ -1,45 +1,39 @@
-// import {getProdutos } from '../../apiConnectProduto'
-import { getCliente } from '../../apiConnectCliente'
-import { getVendedor } from '../../apiConnectVendedor'
+import { getCliente } from '../../connectApi/cliente'
+import { getVendedor } from '../../connectApi/vendedor'
 import "./tela-login.css"
-import { useState } from 'react'
-
+import { useState, useContext } from 'react'
+import { LoginContext } from '../../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
-import { logarCliente, logarVendedor } from '../../logarDeslogar'
 
 export default function TelaLogin(){
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
+    const {logarCliente, logarVendedor} = useContext(LoginContext)
 
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
-
-        const promise = new Promise(
-            async (resolve,reject) =>
-        {
-            await getCliente(email,senha).then(cliente => {
-
-                if(cliente[0]?.email == email && cliente[0]?.senha == senha){
-                    logarCliente();
-                    resolve(navigate('/tela-cliente-produtos'));
-                }
-            })
-
-            await getVendedor(email, senha).then(vendedor => {
-                if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
-                    logarVendedor();
-                    resolve(navigate('/tela-editar-produto'))
-                }
-            })
-
-            resolve('erro')  
-        })
-        
-        if(await promise == 'erro'){
-            alert('Campos inválidos')
-        }
         event.preventDefault();
+        
+        const cliente = await getCliente(email,senha);
+
+        if(cliente[0]?.email == email && cliente[0]?.senha == senha){
+            localStorage.setItem('clienteEmail',cliente[0].email)
+            localStorage.setItem('clienteSenha',cliente[0].senha)
+            logarCliente();
+            return
+        }
+
+        const vendedor = await getVendedor(email,senha);
+
+        if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
+            localStorage.setItem('vendedorEmail',vendedor[0].email)
+            localStorage.setItem('vendedorSenha',vendedor[0].senha)
+            logarVendedor();
+            return
+        }
+
+        alert('Campos inválidos');   
     }
 
     return(
@@ -58,7 +52,7 @@ export default function TelaLogin(){
                         <i></i>
                     </div>
                     <div className="links">
-                        <a href="/tela-cadastro">Singup</a>
+                        <a onClick={()=>navigate('/tela-cadastro')}>Singup</a>
                     </div>
                     <input type="submit" className="submit" value="login" />
                 </form>

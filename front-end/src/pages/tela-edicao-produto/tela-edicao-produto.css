@@ -8,13 +8,13 @@
     padding: 0;
 }
 
-.tela-cadastro{
+.tela-edicao-produto{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
-.tela-cadastro .box{
+.tela-edicao-produto .box{
     position: relative;
     width: 380px;
     height: 720px;
@@ -22,7 +22,7 @@
     border-radius: 8px
 }
 
-.tela-cadastro .box form{
+.tela-edicao-produto .box form{
     position: absolute;
     inset: 4px;
     background: #222;
@@ -33,7 +33,7 @@
     flex-direction: column;
 }
 
-.tela-cadastro .box form .select{
+.tela-edicao-produto .box form .select{
     display: flex;
     color: white;
     margin: 0;
@@ -42,24 +42,29 @@
     margin-top: 20px;
 }
 
-.tela-cadastro .box form .select select{
+.tela-edicao-produto .box form .select select{
     width: 150px;
     gap: 0;
 }
+.tela-edicao-produto .box form .submitBox{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-.tela-cadastro .box form h2{
+.tela-edicao-produto .box form h2{
     color: #fff;
     font-weight: 500;
     text-align: center;
     letter-spacing: 0.1em;
 }
 
-.tela-cadastro .box form .inputBox{
+.tela-edicao-produto .box form .inputBox{
     position: relative;
     width: 300px;
     margin-top: 35px;
 }
-.tela-cadastro .box form .inputBox input{
+.tela-edicao-produto .box form .inputBox input{
     position: relative;
     width: 100%;
     padding: 20px 10px 10px;
@@ -73,7 +78,7 @@
     transition: 0.5s;
     z-index: 10;
 }
-.tela-cadastro .box form .inputBox span{
+.tela-edicao-produto .box form .inputBox span{
     position: absolute;
     left: 0;
     padding: 20px 10px 10px;
@@ -85,14 +90,14 @@
 
 }
 
-.tela-cadastro .box form .inputBox input:valid ~ span,
-.tela-cadastro .box form .inputBox input:focus ~ span{
+.tela-edicao-produto .box form .inputBox input:valid ~ span,
+.tela-edicao-produto .box form .inputBox input:focus ~ span{
     color: #fff;
     font-size: 0.75em;
     transform: translateY(-34px);
 }
 
-.tela-cadastro .box form .inputBox i{
+.tela-edicao-produto .box form .inputBox i{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -105,29 +110,28 @@
     pointer-events: none;
 }
 
-.tela-cadastro .box form .inputBox input:valid ~ i,
-.tela-cadastro .box form .inputBox input:focus ~ i{
+.tela-edicao-produto .box form .inputBox input:valid ~ i,
+.tela-edicao-produto .box form .inputBox input:focus ~ i{
     height: 44px;
-
 }
-.tela-cadastro .box form .links{
+.tela-edicao-produto .box form .links{
     display: flex;
     justify-content: space-between;
 }
 
-.tela-cadastro .box form .links a{
+.tela-edicao-produto .box form .links a{
     margin: 10px 0;
     font-size: 0.75em;
     color: #8f8f8f;
     text-decoration: none;
 }
 
-.tela-cadastro .box form .links a:hover,
-.tela-cadastro .box form .links a:nth-child(2){
+.tela-edicao-produto .box form .links a:hover,
+.tela-edicao-produto .box form .links a:nth-child(2){
     color: #fff;
 }
 
-.tela-cadastro .submit{
+.tela-edicao-produto .submit{
     border: none;
     outline: none;
     padding: 9px 25px;
@@ -141,23 +145,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    
 }
-.tela-cadastro .submit:active{
+.tela-edicao-produto .submit:active{
     opacity: 0.8;
 }
 
 
-.tela-cadastro .box select:focus{
+.tela-edicao-produto .box select:focus{
     border: none;
     outline: none;
     margin: none;
     padding: none;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+.tela-edicao-produto input[type="number"]::-webkit-inner-spin-button,
+.tela-edicao-produto input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }

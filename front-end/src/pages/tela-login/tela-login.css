@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-*
+.tela-login *
 {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -14,7 +14,7 @@
     align-items: center;
     min-height: 100vh;
 }
-.box{
+.tela-login .box{
     position: relative;
     width: 380px;
     height: 420px;
@@ -22,7 +22,7 @@
     border-radius: 8px
 }
 
-.box form{
+.tela-login .box form{
     position: absolute;
     inset: 4px;
     background: #222;
@@ -33,19 +33,19 @@
     flex-direction: column;
 }
 
-.box form h2{
+.tela-login .box form h2{
     color: #fff;
     font-weight: 500;
     text-align: center;
     letter-spacing: 0.1em;
 }
 
-.box form .inputBox{
+.tela-login .box form .inputBox{
     position: relative;
     width: 300px;
     margin-top: 35px;
 }
-.box form .inputBox input{
+.tela-login .box form .inputBox input{
     position: relative;
     width: 100%;
     padding: 20px 10px 10px;
@@ -59,7 +59,7 @@
     transition: 0.5s;
     z-index: 10;
 }
-.box form .inputBox span{
+.tela-login .box form .inputBox span{
     position: absolute;
     left: 0;
     padding: 20px 10px 10px;
@@ -71,14 +71,14 @@
 
 }
 
-.box form .inputBox input:valid ~ span,
-.box form .inputBox input:focus ~ span{
+.tela-login .box form .inputBox input:valid ~ span,
+.tela-login .box form .inputBox input:focus ~ span{
     color: #fff;
     font-size: 0.75em;
     transform: translateY(-34px);
 }
 
-.box form .inputBox i{
+.tela-login .box form .inputBox i{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -91,29 +91,29 @@
     pointer-events: none;
 }
 
-.box form .inputBox input:valid ~ i,
-.box form .inputBox input:focus ~ i{
+.tela-login .box form .inputBox input:valid ~ i,
+.tela-login .box form .inputBox input:focus ~ i{
     height: 44px;
 
 }
-.box form .links{
+.tela-login .box form .links{
     display: flex;
     justify-content: space-between;
 }
 
-.box form .links a{
+.tela-login .box form .links a{
     margin: 10px 0;
     font-size: 0.75em;
     color: #8f8f8f;
     text-decoration: none;
 }
 
-.box form .links a:hover,
-.box form .links a:nth-child(2){
+.tela-login .box form .links a:hover,
+.tela-login .box form .links a:nth-child(2){
     color: #fff;
 }
 
-.submit{
+.tela-login .submit{
     border: none;
     outline: none;
     padding: 9px 25px;
@@ -125,6 +125,6 @@
     width: 100px;
     margin-top: 10px;
 }
-.submit:active{
+.tela-login .submit:active{
     opacity: 0.8;
 }

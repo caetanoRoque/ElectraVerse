@@ -1,7 +1,8 @@
 import './tela-cadastro.css'
 import { useState } from 'react'
-import { criarCliente } from '../../apiConnectCliente'
-import { criarVendedor } from '../../apiConnectVendedor'
+import { criarCliente } from '../../connectApi/cliente'
+import { criarVendedor } from '../../connectApi/vendedor'
+import { useNavigate } from 'react-router-dom'
 
 export default function TelaCadastro(){
     const [nome, setNome] = useState()
@@ -12,38 +13,40 @@ export default function TelaCadastro(){
     const [endereco, setEndereco] = useState()
     const [tipo, setTipo] = useState('cliente')
     
-    const handleLogin = (event) => {
+    const navigate = useNavigate();
 
+    const handleCadastro = async (event) => {
         event.preventDefault();
+
         if(tipo == 'cliente'){
-            criarCliente(nome,email,senha,telefone,inscricao,endereco).then(cliente => {
-                if(cliente == 'erro'){
-                    alert('Email já cadastrado');
-                }
-                else{
-                    alert("Cliente cadastrado com sucesso")
-                    window.location.href = '/'
-                }
-            })
+            const resposta = await criarCliente(nome,email,senha,telefone,inscricao,endereco);
+
+            if(resposta == 'erro')
+                alert('Email já cadastrado');
+            
+            else{
+                alert("Cliente cadastrado com sucesso");
+                navigate('/');
+            }
         }
 
-        if(tipo == 'vendedor'){
-            criarVendedor(nome,email,senha,telefone,inscricao,endereco).then(vendedor => {
-                if(vendedor == 'erro'){
-                    alert('Email já cadastrado');
-                }
-                else{
-                    alert("Vendedor cadastrado com sucesso")
-                    window.location.href = '/'
-                }
-            })
+        else if(tipo == 'vendedor'){
+            const resposta = await criarVendedor(nome,email,senha,telefone,inscricao,endereco); 
+            
+            if(resposta == 'erro')
+                alert('Email já cadastrado');
+                
+            else{
+                alert("Vendedor cadastrado com sucesso");
+                navigate('/');
+            } 
         }  
     }
     
     return(
         <section className='tela-cadastro'>
         <div className="box">
-            <form onSubmit={()=>handleLogin(event)}>
+            <form onSubmit={()=>handleCadastro(event)}>
                 <h2>Cadastro</h2>
                 <div className="inputBox">
                     <input type="text" onChange={(e)=> setNome(e.target.value)} required="required" />
@@ -82,9 +85,6 @@ export default function TelaCadastro(){
                         <option value="vendedor">Vendedor</option>
                     </select>
                 </div>
-
-                
-                
             </form>
         </div>
     </section>  

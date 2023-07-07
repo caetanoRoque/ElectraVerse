@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { dominio } from './apiDominio';
 
 export async function getVendedor(email,senha){
-    const url = 'http://localhost:3000/vendedor/logar-vendedor/';
+    const url = dominio+'vendedor/logar-vendedor/';
     let data;
     let vendedor = {
         email: email,
@@ -15,7 +16,7 @@ export async function getVendedor(email,senha){
     return data;
 }
 export async function criarVendedor(nome,email,senha,telefone,inscricao,endereco){
-    const url = 'http://localhost:3000/vendedor/cadastrar-vendedor';
+    const url = dominio+'vendedor/cadastrar-vendedor';
     let data;
     let vendedor = {
         nome: nome,

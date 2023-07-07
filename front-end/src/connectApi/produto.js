@@ -1,10 +1,11 @@
 import axios from "axios";
+import { dominio } from './apiDominio';
 
 export async function getProdutos(){
-    const url = 'http://localhost:3000/produto/pegar-produto';
+    const url = dominio+'produto/pegar-produtos';
     let data;
 
-    await axios.get(url)
+    await axios.get(url, { headers: { 'Access-Control-Allow-Origin': '*' } })
         .then(response => data = response.data)
         .catch(error   => data = error);
     
@@ -12,7 +13,7 @@ export async function getProdutos(){
 }
 
 export async function postProduto(produto){
-    const url = 'http://localhost:3000/produto/cadastrar-produto';
+    const url = dominio+'produto/cadastrar-produto';
     let data;
 
     await axios.post(url,produto)
@@ -23,10 +24,10 @@ export async function postProduto(produto){
 }
 
 export async function putProduto(produto){
-    const url = 'http://localhost:3000/produto/editar-produto';
+    const url = dominio+'produto/editar-produto';
     let data;
 
-    
+    console.log(produto)
 
     await axios.put(url,produto)
         .then(response => data = response.data)
@@ -36,7 +37,7 @@ export async function putProduto(produto){
 }
 
 export async function deleteProduto(id){
-    const url = 'http://localhost:3000/produto/deletar-produto'+id;
+    const url = dominio+'produto/deletar-produto'+id;
     let data;
 
     await axios.delete(url)

@@ -22,7 +22,7 @@ export default function TelaCadastro(){
             const resposta = await criarCliente(nome,email,senha,telefone,inscricao,endereco);
 
             if(resposta == 'erro')
-                alert('Email já cadastrado');
+                alert('Informações invalidas ou e-mail já cadastrado');
             
             else{
                 alert("Cliente cadastrado com sucesso");
@@ -34,7 +34,7 @@ export default function TelaCadastro(){
             const resposta = await criarVendedor(nome,email,senha,telefone,inscricao,endereco); 
             
             if(resposta == 'erro')
-                alert('Email já cadastrado');
+                alert('Informações inválidas ou e-mail já cadastrado');
                 
             else{
                 alert("Vendedor cadastrado com sucesso");

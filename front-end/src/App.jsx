@@ -37,7 +37,7 @@ export default function Rotas(){
       navigate('/tela-cliente-produtos');
     
     else if(vendedorLogado)
-      navigate('/tela-edicao-produto');
+      navigate('/tela-adicionar-produto');
 
     else if(!clienteLogado && !vendedorLogado)
       navigate('/')

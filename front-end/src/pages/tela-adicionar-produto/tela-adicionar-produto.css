@@ -8,13 +8,14 @@
     padding: 0;
 }
 
-.tela-edicao-produto{
+.tela-adicionar-produto{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    
 }
-.tela-edicao-produto .box{
+.tela-adicionar-produto .box{
     position: relative;
     width: 450px;
     height: 720px;
@@ -22,7 +23,7 @@
     border-radius: 8px
 }
 
-.tela-edicao-produto .box form{
+.tela-adicionar-produto .box form{
     position: absolute;
     inset: 4px;
     background: #222;
@@ -35,7 +36,7 @@
     align-items: center;
 }
 
-.tela-edicao-produto .box form .select{
+.tela-adicionar-produto .box form .select{
     display: flex;
     color: white;
     margin: 0;
@@ -44,7 +45,7 @@
     margin-top: 20px;
 }
 
-.tela-edicao-produto .box form button{
+.tela-adicionar-produto .box form button{
     width:30px;
     height: 30px;
     background-color: red;
@@ -53,29 +54,29 @@
     border-radius:2px;
 }
 
-.tela-edicao-produto .box form .select select{
+.tela-adicionar-produto .box form .select select{
     width: 150px;
     gap: 0;
 }
-.tela-edicao-produto .box form .submitBox{
+.tela-adicionar-produto .box form .submitBox{
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.tela-edicao-produto .box form h2{
+.tela-adicionar-produto .box form h2{
     color: #fff;
     font-weight: 500;
     text-align: center;
     letter-spacing: 0.1em;
 }
 
-.tela-edicao-produto .box form .inputBox{
+.tela-adicionar-produto .box form .inputBox{
     position: relative;
     width: 300px;
     margin-top: 35px;
 }
-.tela-edicao-produto .box form .inputBox input{
+.tela-adicionar-produto .box form .inputBox input{
     position: relative;
     width: 100%;
     padding: 20px 10px 10px;
@@ -89,7 +90,7 @@
     transition: 0.5s;
     z-index: 10;
 }
-.tela-edicao-produto .box form .inputBox span{
+.tela-adicionar-produto .box form .inputBox span{
     position: absolute;
     left: 0;
     padding: 20px 10px 10px;
@@ -101,14 +102,14 @@
 
 }
 
-.tela-edicao-produto .box form .inputBox input:valid ~ span,
-.tela-edicao-produto .box form .inputBox input:focus ~ span{
+.tela-adicionar-produto .box form .inputBox input:valid ~ span,
+.tela-adicionar-produto .box form .inputBox input:focus ~ span{
     color: #fff;
     font-size: 0.75em;
     transform: translateY(-34px);
 }
 
-.tela-edicao-produto .box form .inputBox i{
+.tela-adicionar-produto .box form .inputBox i{
     position: absolute;
     left: 0;
     bottom: 0;
@@ -121,28 +122,28 @@
     pointer-events: none;
 }
 
-.tela-edicao-produto .box form .inputBox input:valid ~ i,
-.tela-edicao-produto .box form .inputBox input:focus ~ i{
+.tela-adicionar-produto .box form .inputBox input:valid ~ i,
+.tela-adicionar-produto .box form .inputBox input:focus ~ i{
     height: 44px;
 }
-.tela-edicao-produto .box form .links{
+.tela-adicionar-produto .box form .links{
     display: flex;
     justify-content: space-between;
 }
 
-.tela-edicao-produto .box form .links a{
+.tela-adicionar-produto .box form .links a{
     margin: 10px 0;
     font-size: 0.75em;
     color: #8f8f8f;
     text-decoration: none;
 }
 
-.tela-edicao-produto .box form .links a:hover,
-.tela-edicao-produto .box form .links a:nth-child(2){
+.tela-adicionar-produto .box form .links a:hover,
+.tela-adicionar-produto .box form .links a:nth-child(2){
     color: #fff;
 }
 
-.tela-edicao-produto .submit{
+.tela-adicionar-produto .submit{
     border: none;
     outline: none;
     padding: 9px 25px;
@@ -157,21 +158,55 @@
     justify-content: center;
     align-items: center;
 }
-.tela-edicao-produto .submit:active{
+.tela-adicionar-produto .submit:active{
     opacity: 0.8;
 }
 
 
-.tela-edicao-produto .box select:focus{
+.tela-adicionar-produto .box select:focus{
     border: none;
     outline: none;
     margin: none;
     padding: none;
 }
 
-.tela-edicao-produto input[type="number"]::-webkit-inner-spin-button,
-.tela-edicao-produto input[type="number"]::-webkit-outer-spin-button {
+.tela-adicionar-produto input[type="number"]::-webkit-inner-spin-button,
+.tela-adicionar-produto input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
+.editar{
+    width:50px;
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    border:none;
+    border-radius:4px;
+    position:fixed;
+    top: 5px;
+    right:10px;
+    font-size:30px
+}
+
+.editar img{
+    width:40px;
+    height:40px;
+}
+
+.logout{
+    width:50px;
+    height:50px;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    border:none;
+    border-radius:4px;
+    position:fixed;
+    top: 5px;
+    left:10px;
+    padding-right:7px;
+    
+}

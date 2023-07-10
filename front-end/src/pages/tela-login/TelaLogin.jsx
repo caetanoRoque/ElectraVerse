@@ -33,7 +33,7 @@ export default function TelaLogin(){
             return
         }
 
-        alert('Campos inválidos');   
+        alert('Usuário ou senha inválidos');   
     }
 
     return(

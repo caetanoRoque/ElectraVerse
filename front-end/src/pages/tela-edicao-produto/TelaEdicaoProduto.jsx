@@ -1,11 +1,17 @@
 import './tela-edicao-produto.css'
-import { useState , useEffect} from 'react'
+import { useState , useEffect, useContext} from 'react'
 import { getProdutos, putProduto} from "../../connectApi/produto"
+import { deleteProduto } from '../../connectApi/produto'
+import { useNavigate } from 'react-router-dom'
+import { LoginContext } from "../../context/LoginContext"
+import Logout from "../../assets/logout.svg" 
 
 export default function TelaEdicaoProduto(){
     const [produtos, setProdutos] = useState([])
     const [produto, setProduto] = useState({});
     const [editado, setEditado] = useState(false);
+    const navigate = useNavigate();
+    const { deslogarVendedor } = useContext(LoginContext);
 
     useEffect(()=>{
         handleProdutos();
@@ -17,7 +23,6 @@ export default function TelaEdicaoProduto(){
             handleProdutos();
             setEditado(false);
 
-            console.log(produto)
         }
     },[editado])
        
@@ -109,8 +114,27 @@ export default function TelaEdicaoProduto(){
         setProduto({...produto, [index]: value})
     }
 
+    const deletarProduto = async ()=>{
+        const resposta = await deleteProduto(produto.id_produto)
+        console.log(produtos)
+       
+            console.log(resposta)
+            // window.location.reload()
+       
+    }
+
+    const handleDeslogar = () => {
+        localStorage.removeItem('vendedorEmail');
+        localStorage.removeItem('vendedorSenha');
+        deslogarVendedor();
+    }
+
     return(
         <section className='tela-edicao-produto'>
+            <button type="button" className='editar' onClick={()=>navigate("/tela-adicionar-produto")}>+</button>
+            <div className="logout" onClick={()=>handleDeslogar()}>
+                <img src={Logout} width="33px" alt="Menu" />
+            </div>
             <div className="box">
                 <form onSubmit={()=>handleEditar(event)}>
 
@@ -127,6 +151,7 @@ export default function TelaEdicaoProduto(){
                             <option value="">Selecione um ítem</option>
                             {mapProdutos()}
                         </select>
+                        <button onClick={()=>deletarProduto()}>X</button>
                     </div>
 
                     {/* NOME */}

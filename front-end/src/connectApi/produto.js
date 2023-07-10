@@ -37,12 +37,16 @@ export async function putProduto(produto){
 }
 
 export async function deleteProduto(id){
-    const url = dominio+'produto/deletar-produto'+id;
+    const url = dominio+'produto/deletar-produto';
     let data;
+    let body = {id:id}
 
-    await axios.delete(url)
+    console.log(body)
+
+    await axios.delete(url,body)
         .then(response => data = response.data)
         .catch(error   => data = error);
     
     return data;
+
 }

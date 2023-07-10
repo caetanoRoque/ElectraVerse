@@ -12,8 +12,8 @@ exports.editarProduto = (valores) => {
   return database.query(query)
 }
 
-exports.deletarProduto = (valores) => {
-  const query = `DELETE FROM PRODUTO WHERE ID_PRODUTO=${valores.id}`
+exports.deletarProduto = (id) => {
+  const query = `DELETE FROM PRODUTO WHERE ID_PRODUTO=${id}`
   return database.query(query)
 }
 

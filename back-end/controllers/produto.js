@@ -25,9 +25,9 @@ exports.editarProduto = (req, res) => {
 }
 
 exports.deletarProduto = (req, res) => {
-  const valores = req.body
+  const id = req.params.id
 
-  Produto.deletarProduto(valores)
+  Produto.deletarProduto(id)
     .then(() => {
       res.status(200).send({ mensagem: "Produto deletado com sucesso" })
     })

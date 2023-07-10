@@ -12,49 +12,58 @@ export default function TelaClienteProdutos(){
     const [produtos, setProdutos] = useState([]);
     const [produtosPesquisados, setProdutosPesquisados] = useState([]);
     const { deslogarCliente } = useContext(LoginContext);
+
     const [pesquisa, setPesquisa] = useState('');
     const [pesquisou, setPesquisou] = useState(false);
-    const [naoEncontrado, setNaoEncontrado] = useState(false);
+    const [encontrado, setEncontrado] = useState(true);
+
+    const [abacaxi, setAbacaxi] = useState('');
 
     useEffect(()=>{
-        setPesquisou(false);
+        console.log('aa')
+    },[abacaxi])
 
+    useEffect(()=>{
         getProdutos().then(produtos_response=>{
-            setProdutos(produtos_response.produtos);
 
-            if(pesquisa != ''){
-                setProdutosPesquisados(produtos_response.produtos.filter(produto => produto.nome.includes(pesquisa)))
-
-                if(produtosPesquisados.length == 0)
-                    setNaoEncontrado(true);
-                
-                else setNaoEncontrado(false);
+            if(produtos_response.produtos.length > 0){
+                setProdutos(produtos_response.produtos);
+                setEncontrado(true)
             }
-
-            else{
-                setProdutosPesquisados(produtos_response.produtos)
-
-                if(produtos_response.length == 0)
-                    setNaoEncontrado(true);
-                
-                else setNaoEncontrado(false);
-            }
+            else setEncontrado(false)
         })
-    },[pesquisou])
+    },[])
 
+    const pesquisar = () => {
+        if(pesquisa == ''){
+            setPesquisou(false);
+        }
+        else{
+            setPesquisou(true)
+
+            let pesquisados = []
+            pesquisados = produtos.filter(produto => produto.nome.toLowerCase().includes(pesquisa));
+            setProdutosPesquisados(pesquisados);
+        
+            if(pesquisados == []) setEncontrado(false);
+            else                  setEncontrado(true);
+        }
+    }
+    
     const mapProdutos = ()=>{
         let componentes;
 
-        if(!naoEncontrado){
-            componentes = produtosPesquisados?.map((produto,key)=>{
-                return (
-                    <Produto key={key} produto={produto}/>
-                )
-            })
+        if(!pesquisou) componentes = produtos;
+        else           componentes = produtosPesquisados;
+
+        if(encontrado){
+            componentes = componentes.map(
+                (produto,key) =>
+                <Produto key={key} produto={produto}/> 
+            )
         }
-        else{
+        else 
             componentes = (<h1>Produto(s) não encontrado(s)</h1>)
-        }
 
         return componentes;
     }
@@ -67,15 +76,23 @@ export default function TelaClienteProdutos(){
 
     return(
         <div className="tela-principal">
+
           <header>
             <div className="menu" onClick={()=>handleDeslogar()}>
                 <img src={Logout} width="33px" alt="Menu" />
-                </div>
-            <div className="barraPesquisa">
-              <input type="text" onChange={e => setPesquisa(e.target.value)}/>
-              <button onClick={() => setPesquisou(true)}><img src={Search} width="30px" alt="" /></button>
             </div>
-            <div className="carrinho"><img src={Cart} width="40px" alt="" /></div>
+
+            <div className="barraPesquisa">
+                <input type="text" onChange={e => setPesquisa(e.target.value)}/>
+
+                <button onClick={() => pesquisar()}>
+                    <img src={Search} width="30px" alt="" />
+                </button>
+            </div>
+
+            <div className="carrinho">
+                <img src={Cart} width="40px" alt="" />
+            </div>
           </header>
 
           <section>

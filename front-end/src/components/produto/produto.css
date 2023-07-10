@@ -8,7 +8,13 @@
     border-radius: 15px;
     border: orange 1px solid;
     box-shadow: 1px 1px 10px rgb(68, 68, 68);
+    transition: 0.1s;
 }
+.produto:hover{
+    transform: scale(1.03);
+    filter: saturate(250%);
+}
+
 .produto article figure{
     margin: 20px 0 0;
     display: flex;
@@ -38,12 +44,11 @@
     height: 70px;
     display: flex;
     justify-content: center;
-    /* height: 40px; */
-    /* width: 100%; */
 }
 .produto .comprar button{
     margin-bottom: 20px;
     border: none;
+    cursor: pointer;
     background-color: orange;
     height: 30px;
     padding: 0 20px;

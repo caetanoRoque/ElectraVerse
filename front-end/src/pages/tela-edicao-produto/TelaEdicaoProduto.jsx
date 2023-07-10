@@ -116,12 +116,16 @@ export default function TelaEdicaoProduto(){
 
     const deletarProduto = async ()=>{
         const resposta = await deleteProduto(produto.id_produto)
-        console.log(produtos)
-       
-            console.log(resposta)
-            // window.location.reload()
-       
-    }
+
+        console.log(resposta)
+
+        if(resposta.mensagem == 'Produto deletado com sucesso'){
+            alert('Produto removido com sucesso')
+            setEditado(true);
+        }
+        else 
+            alert('Produto não pode ser deletado')
+    }   
 
     const handleDeslogar = () => {
         localStorage.removeItem('vendedorEmail');

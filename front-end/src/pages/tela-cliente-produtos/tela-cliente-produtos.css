@@ -28,14 +28,13 @@
     height: 50px;
     border-radius: 10px;
     border: none;
-    font-size: 30px;
+    font-size: 22px;
     padding: 0 20px;
 } 
 .tela-principal header .barraPesquisa button{
     height: 50px;
     width: 50px;
     border-radius: 100%;
-    background-color: white;
     border: none;
     transition: 0.2s;
 }
@@ -78,16 +77,9 @@
     flex-flow: wrap;
 }
 
-.tela-principal .barraPesquisa button:hover{
-    transform: scale(110%);
-}
-
-.tela-principal .menu:hover{
-    background-color: rgb(19, 102, 255);
-    transform: scale(110%);
-}
-
-.tela-principal .carrinho:hover{
-    background-color: rgb(19, 102, 255);
+.tela-principal .menu:hover, 
+.carrinho:hover, 
+.barraPesquisa button:hover{
+    background-color: rgb(115, 152, 253);
     transform: scale(110%);
 }

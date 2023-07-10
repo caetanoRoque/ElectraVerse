@@ -63,7 +63,7 @@ export default function TelaAdicionarProduto() {
             alert('Produto cadastrado com sucesso!');
 
             // RESETAR INPUTS
-            for (let i = 1; i < document.forms[0].length - 1; i++) {
+            for (let i = 0; i < document.forms[0].length-1; i++) {
                 document.forms[0][i].value = '';
                 document.forms[0][i].blur();
             }

@@ -4,10 +4,12 @@ import "./tela-login.css"
 import { useState, useContext } from 'react'
 import { LoginContext } from '../../context/LoginContext'
 import { useNavigate } from 'react-router-dom'
+import Alert from '../../components/alert/Alert'
 
 export default function TelaLogin(){
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
+    const [alert, setAlert] = useState(false)
     const {logarCliente, logarVendedor} = useContext(LoginContext)
 
     const navigate = useNavigate();
@@ -33,14 +35,14 @@ export default function TelaLogin(){
             return
         }
 
-        alert('Usuário ou senha inválidos');   
+        setAlert(true)
     }
 
     return(
         <section className='tela-login'>
             <div className="box">
                 <form onSubmit={()=>handleLogin(event)}>
-                    <h2>Sing in</h2>
+                    <h2>Sign in</h2>
                     <div className="inputBox">
                         <input type="text" onChange={(e)=> setEmail(e.target.value)} required="required" />
                         <span>Email</span>
@@ -52,11 +54,12 @@ export default function TelaLogin(){
                         <i></i>
                     </div>
                     <div className="links">
-                        <a onClick={()=>navigate('/tela-cadastro')}>Singup</a>
+                        <a onClick={()=>navigate('/tela-cadastro')}>Signup</a>
                     </div>
                     <input type="submit" className="submit" value="login" />
                 </form>
             </div>
+            {alert && <Alert message="Usuário ou senha incorretos" setAlert={setAlert}/>}
         </section>        
     )
 }

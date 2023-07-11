@@ -208,5 +208,7 @@
     top: 5px;
     left:10px;
     padding-right:7px;
-    
+}
+.editar:hover, .logout:hover{
+    background-color: #6be9ff;
 }

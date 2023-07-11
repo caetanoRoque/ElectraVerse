@@ -1,27 +1,55 @@
 import "./produto.css"
+import { useNavigate } from "react-router-dom"
 
-export default function Produto(p){
+export default function Produto({produto, setAlert}){
+    const navigate = useNavigate();
+
+    const direcionarCarrinho = () =>{
+        if(produto.estoque == 0){
+            setAlert(true)
+            return
+        }
+        
+        if(localStorage.carrinho){
+            
+            let newCarrinho = JSON.parse(localStorage.carrinho);
+            let newProduto = {...produto};
+            newProduto.estoqueSelecionado = 1
+            
+            let produtoRepetido = newCarrinho.find(p => p.id_produto == newProduto.id_produto)
+            
+            if(!produtoRepetido){
+                newCarrinho.push(newProduto);
+                localStorage.setItem('carrinho', JSON.stringify(newCarrinho));
+            }
+        }
+        else{
+            let newProduto = {...produto};
+            newProduto.estoqueSelecionado = 1
+            localStorage.setItem('carrinho',JSON.stringify([newProduto]))
+        }
+        navigate('/tela-carrinho')
+    }
 
     return(
         <div className="produto">
             
-            <p className="estoque">{p.produto.estoque} un</p>
+            <p className="estoque">{produto.estoque} un</p>
 
             <article>
                 <figure>
-                    <img src={p.produto.imagem} alt="" />
+                    <img src={produto.imagem} alt="" />
                 </figure>
                 <div className="info">
-                    <p>{p.produto.nome}</p>
-                    <label>R$ {p.produto.preco?.replace('.',',')}</label>
+                    <p>{produto.nome}</p>
+                    <label>R$ {produto.preco?.replace('.',',')}</label>
                 </div>
                 
             </article>
             
             <div className="comprar">
-                <button>COMPRAR</button>
+                <button onClick={()=> direcionarCarrinho()}>COMPRAR</button>
             </div>
-
         </div>
     )
 }

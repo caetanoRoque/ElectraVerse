@@ -1,15 +1,19 @@
 import './tela-adicionar-produto.css'
 import { useState, useContext} from 'react'
 import { postProduto } from '../../connectApi/produto';
-import Edit from '../../assets/edit.jpg'
+import Edit from '../../assets/edit.svg'
 import { useNavigate } from 'react-router-dom'
 import { LoginContext } from "../../context/LoginContext"
 import Logout from "../../assets/logout.svg" 
+import Alert from '../../components/alert/Alert'
 
 export default function TelaAdicionarProduto() {
     const [produto, setProduto] = useState({});
     const navigate = useNavigate();
     const { deslogarVendedor } = useContext(LoginContext);
+
+    const [alert, setAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     // CONTROLAR INPUT DE PREÇO
     // impedir qualquer caractere além de número, ponto ou virgula
@@ -60,7 +64,8 @@ export default function TelaAdicionarProduto() {
         const { mensagem } = await postProduto({ ...newProduto });
 
         if (mensagem == 'Produto cadastrado com sucesso') {
-            alert('Produto cadastrado com sucesso!');
+            setAlertMessage('Produto cadastrado com sucesso!');
+            setAlert(true)
 
             // RESETAR INPUTS
             for (let i = 0; i < document.forms[0].length-1; i++) {
@@ -69,7 +74,10 @@ export default function TelaAdicionarProduto() {
             }
         }
 
-        else alert('Campos inválidos');
+        else{
+            setAlertMessage('Campos inválidos');
+            setAlert(true);
+        } 
 
     }
 
@@ -168,8 +176,8 @@ export default function TelaAdicionarProduto() {
                     <div className='submitBox'>
                         <input type="submit" className="submit" value="Adicionar" />
                     </div>
-
                 </form>
+                {alert && <Alert message={alertMessage} setAlert={setAlert}/>}
             </div>
         </section>
     )

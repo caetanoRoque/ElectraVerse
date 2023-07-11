@@ -5,6 +5,7 @@ import { deleteProduto } from '../../connectApi/produto'
 import { useNavigate } from 'react-router-dom'
 import { LoginContext } from "../../context/LoginContext"
 import Logout from "../../assets/logout.svg" 
+import Alert from '../../components/alert/Alert'
 
 export default function TelaEdicaoProduto(){
     const [produtos, setProdutos] = useState([])
@@ -12,6 +13,9 @@ export default function TelaEdicaoProduto(){
     const [editado, setEditado] = useState(false);
     const navigate = useNavigate();
     const { deslogarVendedor } = useContext(LoginContext);
+
+    const [alert, setAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     useEffect(()=>{
         handleProdutos();
@@ -83,7 +87,8 @@ export default function TelaEdicaoProduto(){
         const { mensagem } = await putProduto({...newProduto});
 
         if(mensagem == 'Produto editado com sucesso'){
-            alert('Produto editado com sucesso!');
+            setAlertMessage('Produto editado com sucesso!')
+            setAlert(true);
     
             // RESETAR INPUTS
             for(let i = 1; i < document.forms[0].length-1; i++){
@@ -97,7 +102,10 @@ export default function TelaEdicaoProduto(){
             setEditado(true);
         }
         
-        else alert('Campos inválidos');
+        else{
+            setAlertMessage('Campos inválidos')
+            setAlert(true)
+        } 
         
     }
 
@@ -120,11 +128,13 @@ export default function TelaEdicaoProduto(){
         console.log(resposta)
 
         if(resposta.mensagem == 'Produto deletado com sucesso'){
-            alert('Produto removido com sucesso')
+            setAlertMessage('Produto removido com sucesso')
+            setAlert(true)
             setEditado(true);
         }
         else 
-            alert('Produto não pode ser deletado')
+            setAlertMessage('Produto não pode ser deletado')
+            setAlert(true)
     }   
 
     const handleDeslogar = () => {
@@ -155,7 +165,7 @@ export default function TelaEdicaoProduto(){
                             <option value="">Selecione um ítem</option>
                             {mapProdutos()}
                         </select>
-                        <button onClick={()=>deletarProduto()}>X</button>
+                        <button type='button' onClick={()=>deletarProduto()}>X</button>
                     </div>
 
                     {/* NOME */}
@@ -231,8 +241,8 @@ export default function TelaEdicaoProduto(){
                     <div className='submitBox'>
                         <input type="submit" className="submit" value="Editar" />
                     </div>       
-
                 </form>
+                {alert && <Alert message={alertMessage} setAlert={setAlert}/>}
             </div>
         </section>  
     )

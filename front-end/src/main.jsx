@@ -8,6 +8,8 @@ import TelaClienteProdutos from './pages/tela-cliente-produtos/TelaClienteProdut
 import TelaCadastro from './pages/tela-cadastro/TelaCadastro';
 import TelaEdicaoProduto from './pages/tela-edicao-produto/TelaEdicaoProduto';
 import TelaAdicionarProduto from './pages/tela-adicionar-produto/TelaAdicionarProduto'
+import TelaCarrinho from './pages/tela-carrinho/TelaCarrinho'
+import TelaFinalizacaoCompra from './pages/tela-finalizacao-compra/TelaFinalizacaoCompra'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { LoginProvider } from './context/LoginContext.jsx'
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
         {
           path: "/tela-adicionar-produto",
           element: <TelaAdicionarProduto/>, 
+        },
+        {
+          path: "/tela-carrinho",
+          element: <TelaCarrinho/>, 
+        },
+        {
+          path: "/tela-finalizacao-compra",
+          element: <TelaFinalizacaoCompra/>, 
         },
     ]
   }

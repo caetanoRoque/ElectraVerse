@@ -7,6 +7,8 @@ import Produto from "../../components/produto/Produto"
 import { useEffect,useState, useContext } from "react"
 import { getProdutos } from "../../connectApi/produto"
 import { LoginContext } from "../../context/LoginContext"
+import { useNavigate } from "react-router-dom"
+import Alert from "../../components/alert/Alert"
 
 export default function TelaClienteProdutos(){
     const [produtos, setProdutos] = useState([]);
@@ -16,12 +18,9 @@ export default function TelaClienteProdutos(){
     const [pesquisa, setPesquisa] = useState('');
     const [pesquisou, setPesquisou] = useState(false);
     const [encontrado, setEncontrado] = useState(true);
+    const [alert, setAlert] = useState(false);
 
-    const [abacaxi, setAbacaxi] = useState('');
-
-    useEffect(()=>{
-        console.log('aa')
-    },[abacaxi])
+    const navigate = useNavigate();
 
     useEffect(()=>{
         getProdutos().then(produtos_response=>{
@@ -42,7 +41,9 @@ export default function TelaClienteProdutos(){
             setPesquisou(true)
 
             let pesquisados = []
-            pesquisados = produtos.filter(produto => produto.nome.toLowerCase().includes(pesquisa));
+            pesquisados = produtos.filter(produto => {
+                return produto.nome.toLowerCase().includes(pesquisa.toLowerCase())
+            })
             setProdutosPesquisados(pesquisados);
         
             if(pesquisados == []) setEncontrado(false);
@@ -59,7 +60,7 @@ export default function TelaClienteProdutos(){
         if(encontrado){
             componentes = componentes.map(
                 (produto,key) =>
-                <Produto key={key} produto={produto}/> 
+                <Produto key={key} produto={produto} setAlert={setAlert}/> 
             )
         }
         else 
@@ -83,7 +84,9 @@ export default function TelaClienteProdutos(){
             </div>
 
             <div className="barraPesquisa">
-                <input type="text" onChange={e => setPesquisa(e.target.value)}/>
+                <input type="text" onChange={e => setPesquisa(e.target.value)} onKeyDown={(e)=>{
+                    if(e.key == 'Enter') pesquisar();
+                }}/>
 
                 <button onClick={() => pesquisar()}>
                     <img src={Search} width="30px" alt="" />
@@ -91,13 +94,15 @@ export default function TelaClienteProdutos(){
             </div>
 
             <div className="carrinho">
-                <img src={Cart} width="40px" alt="" />
+                <img src={Cart} width="40px" alt="" onClick={()=>navigate('/tela-carrinho')}/>
             </div>
           </header>
 
           <section>
                     {mapProdutos()}
           </section>
+
+          {alert && <Alert message={"Produto sem estoque"} setAlert={setAlert}/>}
         </div>
     )
 }

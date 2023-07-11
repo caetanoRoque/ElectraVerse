@@ -1,0 +1,98 @@
+.produto-carrinho{
+    display: flex;
+    height: 260px;
+    width: 300px;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    border: orange 1px solid;
+    box-shadow: 1px 1px 10px rgb(68, 68, 68);
+}
+.produto-carrinho article figure{
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: center;
+}
+.produto-carrinho article figure img{
+    height: 120px;
+    max-width: 80%;
+}
+.produto-carrinho article .info{
+    margin: 0 20px 0;
+}
+.produto-carrinho article .info::first-letter{
+    text-transform: capitalize;
+}
+.produto-carrinho article .info label{
+    color: orange;
+}
+.produto-carrinho article{
+    display: flex;
+    flex-direction: column;
+    height: 150%;
+    width: 100%;
+}
+.produto-carrinho .estoque{
+    position: absolute;
+    top: 0;
+    margin: 5px 5px;
+    z-index: 1;
+    background: orange;
+    color: white;
+    border-radius: 5px;
+    width: max-content;
+    padding: 4px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.produto-carrinho .remover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 5px;
+    top:5px;
+    width: 30px; height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    z-index: 999;
+}
+.produto-carrinho .remover:hover{
+    background-color: rgb(255, 80, 80);
+    cursor: pointer;
+}
+
+.produto-carrinho .mudarEstoque{
+    position: absolute;
+    bottom:15px;
+    left: 50%;
+    display: flex;
+    gap:10px;
+    transform: translateX(-50%);
+}
+
+.produto-carrinho .mudarEstoque button{
+    width:30px;
+    height:30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.produto-carrinho .mudarEstoque  .menos{
+    background-color: red;
+}
+
+.produto-carrinho .mudarEstoque  .mais{
+    background-color: rgb(40, 184, 40);
+}

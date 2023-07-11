@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { criarCliente } from '../../connectApi/cliente'
 import { criarVendedor } from '../../connectApi/vendedor'
 import { useNavigate } from 'react-router-dom'
+import Alert from '../../components/alert/Alert'
 
 export default function TelaCadastro(){
     const [nome, setNome] = useState()
@@ -12,6 +13,17 @@ export default function TelaCadastro(){
     const [inscricao, setInscricao] = useState()
     const [endereco, setEndereco] = useState()
     const [tipo, setTipo] = useState('cliente')
+    const [alert, setAlert] = useState(false)
+    
+    const [alertMessage, setAlertMessage] = useState('');
+    const [sucesso, setSucesso] = useState(false);
+    
+    const onCloseAlert = () => {
+        if(sucesso){
+            setSucesso(false);
+            return navigate('/')
+        }
+    }
     
     const navigate = useNavigate();
 
@@ -21,24 +33,30 @@ export default function TelaCadastro(){
         if(tipo == 'cliente'){
             const resposta = await criarCliente(nome,email,senha,telefone,inscricao,endereco);
 
-            if(resposta == 'erro')
-                alert('Informações invalidas ou e-mail já cadastrado');
+            if(resposta == 'erro'){
+                setAlertMessage('Informações invalidas ou e-mail já cadastrado');
+                setAlert(true)
+            }
             
             else{
-                alert("Cliente cadastrado com sucesso");
-                navigate('/');
+                setAlertMessage('Cliente cadastrado com sucesso')
+                setSucesso(true)
+                setAlert(true)
             }
         }
 
         else if(tipo == 'vendedor'){
             const resposta = await criarVendedor(nome,email,senha,telefone,inscricao,endereco); 
             
-            if(resposta == 'erro')
-                alert('Informações inválidas ou e-mail já cadastrado');
-                
+            if(resposta == 'erro'){
+                setAlertMessage('Informações invalidas ou e-mail já cadastrado')
+                setAlert(true)  
+            }
+
             else{
-                alert("Vendedor cadastrado com sucesso");
-                navigate('/');
+                setAlertMessage('Vendedor cadastrado com sucesso')
+                setSucesso(true)
+                setAlert(true)
             } 
         }  
     }
@@ -86,6 +104,7 @@ export default function TelaCadastro(){
                     </select>
                 </div>
             </form>
+            {alert && <Alert message={alertMessage} onClose={onCloseAlert} setAlert={setAlert}/>}
         </div>
     </section>  
     )

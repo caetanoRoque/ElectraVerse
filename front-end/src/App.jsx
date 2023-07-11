@@ -10,7 +10,9 @@ export default function Rotas(){
   const [acessandoUrlManualmente, seAcessandoUrlManualmente] = useState(0);
 
   const clientePaths = [
-    '/tela-cliente-produtos'
+    '/tela-cliente-produtos',
+    '/tela-carrinho',
+    '/tela-finalizacao-compra'
   ]
 
   const vendedorPaths = [
@@ -28,6 +30,7 @@ export default function Rotas(){
   useEffect(()=>{
 
     if(localStorage.clienteEmail && localStorage.clienteSenha){
+
       setTentandoLogar(true);
       
       getCliente(localStorage.clienteEmail, localStorage.clienteSenha).then(cliente => {
@@ -54,13 +57,12 @@ export default function Rotas(){
       setTentandoLogar(false);
       seAcessandoUrlManualmente(acessandoUrlManualmente+1);
     } 
-
-  },[])
+  },[clienteLogado, vendedorLogado])
   
   useEffect(()=>{ 
 
     if(tentandoLogar) return;
-
+    
     let path = window.location.pathname;
 
     if(clienteLogado){

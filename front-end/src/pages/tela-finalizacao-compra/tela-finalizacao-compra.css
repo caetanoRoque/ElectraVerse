@@ -1,0 +1,42 @@
+.tela-finalizacao-compra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    color: #fff;
+}
+
+.tela-finalizacao-compra .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.tela-finalizacao-compra .endereco{
+    display: flex;
+    gap:10px;
+}
+
+.tela-finalizacao-compra .endereco input{
+    text-align: center;
+}
+
+.tela-finalizacao-compra .box{
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 8px;
+
+}
+
+.tela-finalizacao-compra .preco{
+    display: flex;
+    gap:10px;
+}

@@ -65,7 +65,7 @@ export default function ProdutoCarrinho({produto, setProdutos}) {
                 </figure>
                 <div className="info">
                     <p>{{produto, setProdutos}?.produto.nome}</p>
-                    <label>R$ {{produto, setProdutos}?.produto.preco?.replace('.', ',')}</label>
+                    <label>R$ {Number(produto.preco)?.toFixed(2).toString().replace('.',',')}</label>
                 </div>
             </article>
             <div className="mudarEstoque">

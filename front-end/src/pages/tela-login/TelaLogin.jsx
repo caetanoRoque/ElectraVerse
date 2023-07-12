@@ -10,7 +10,7 @@ export default function TelaLogin(){
     const [email, setEmail] = useState()
     const [senha, setSenha] = useState()
     const [alert, setAlert] = useState(false)
-    const {logarCliente, logarVendedor} = useContext(LoginContext)
+    const {logarCliente, logarVendedor, setTentandoLogar} = useContext(LoginContext)
 
     const navigate = useNavigate();
 
@@ -22,6 +22,7 @@ export default function TelaLogin(){
         if(cliente[0]?.email == email && cliente[0]?.senha == senha){
             localStorage.setItem('clienteEmail',cliente[0].email)
             localStorage.setItem('clienteSenha',cliente[0].senha)
+            setTentandoLogar(false);
             logarCliente();
             return
         }
@@ -31,6 +32,7 @@ export default function TelaLogin(){
         if(vendedor[0]?.email == email && vendedor[0]?.senha == senha){
             localStorage.setItem('vendedorEmail',vendedor[0].email)
             localStorage.setItem('vendedorSenha',vendedor[0].senha)
+            setTentandoLogar(false)
             logarVendedor();
             return
         }

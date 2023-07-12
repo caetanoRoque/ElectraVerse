@@ -45,6 +45,11 @@ export default function TelaFinalizacaoCompra() {
         let carrinho = JSON.parse(localStorage.carrinho);
         let {produtos} = await getProdutos();
 
+        if(endereco == ''){
+            setAlertMessage('Adicione um endereço');
+            setAlert(true);
+            return;
+        }
 
         //VERIFICAR SE O PRODUTO AINDA EXISTE NO ESTOQUE
         for(let produto of carrinho){
@@ -91,7 +96,7 @@ export default function TelaFinalizacaoCompra() {
                     </div>
                     <div className='preco'>
                         <label >Total: </label>
-                        <p>R$ {precoTotal}</p>
+                        <p>R$ {Number(precoTotal)?.toFixed(2).toString().replace('.',',')}</p>
                     </div>
                     <button onClick={()=> comprar()}>Finalizar Compra </button>
                 </div>

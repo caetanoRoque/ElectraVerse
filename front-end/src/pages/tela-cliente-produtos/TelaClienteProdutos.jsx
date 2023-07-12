@@ -36,6 +36,7 @@ export default function TelaClienteProdutos(){
     const pesquisar = () => {
         if(pesquisa == ''){
             setPesquisou(false);
+            setEncontrado(true);
         }
         else{
             setPesquisou(true)
@@ -46,8 +47,9 @@ export default function TelaClienteProdutos(){
             })
             setProdutosPesquisados(pesquisados);
         
-            if(pesquisados == []) setEncontrado(false);
-            else                  setEncontrado(true);
+            console.log(pesquisados)
+            if(pesquisados.length == 0) setEncontrado(false);
+            else                        setEncontrado(true);
         }
     }
     
@@ -63,15 +65,13 @@ export default function TelaClienteProdutos(){
                 <Produto key={key} produto={produto} setAlert={setAlert}/> 
             )
         }
-        else 
-            componentes = (<h1>Produto(s) não encontrado(s)</h1>)
+        else componentes = (<h1>Produto(s) não encontrado(s)</h1>)
 
         return componentes;
     }
 
     const handleDeslogar = () => {
-        localStorage.removeItem('clienteEmail');
-        localStorage.removeItem('clienteSenha');
+        localStorage.clear();
         deslogarCliente();
     }
 

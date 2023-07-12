@@ -12,6 +12,7 @@ export default function TelaEdicaoProduto(){
     const [produto, setProduto] = useState({});
     const [editado, setEditado] = useState(false);
     const navigate = useNavigate();
+    const [selectClicado, setSelectClicado] = useState(false);
     const { deslogarVendedor } = useContext(LoginContext);
 
     const [alert, setAlert] = useState(false);
@@ -29,7 +30,23 @@ export default function TelaEdicaoProduto(){
 
         }
     },[editado])
-       
+
+    useEffect(()=>{
+        if(produto.id_produto){
+            let produtoSelecionado = produtos.find(p => p.id_produto == produto.id_produto)
+        
+            document.forms[0][2].value = produtoSelecionado.nome;
+            document.forms[0][3].value = produtoSelecionado.preco;
+            document.forms[0][4].value = produtoSelecionado.estoque;
+            document.forms[0][5].value = produtoSelecionado.categoria;
+            document.forms[0][6].value = produtoSelecionado.descricao;
+            document.forms[0][7].value = produtoSelecionado.imagem;
+        }
+        else{
+            resetarImputs()
+        }
+    },[selectClicado])
+      
     //OBTER TODOS OS PRODUTOS
     const handleProdutos = () => {
         getProdutos().then(produto=>{
@@ -90,11 +107,7 @@ export default function TelaEdicaoProduto(){
             setAlertMessage('Produto editado com sucesso!')
             setAlert(true);
     
-            // RESETAR INPUTS
-            for(let i = 1; i < document.forms[0].length-1; i++){
-                document.forms[0][i].value = '';
-                document.forms[0][i].blur();
-            }
+            resetarImputs();
     
             // SELECIONAR O PRIMEIRO OPTION DO SELECT
             document.forms[0][0].selectedIndex = 0;
@@ -107,6 +120,13 @@ export default function TelaEdicaoProduto(){
             setAlert(true)
         } 
         
+    }
+
+    const resetarImputs = ()=> {
+        for(let i = 1; i < document.forms[0].length-1; i++){
+            document.forms[0][i].value = '';
+            document.forms[0][i].blur();
+        }
     }
 
     const mapProdutos = ()=>{
@@ -125,12 +145,11 @@ export default function TelaEdicaoProduto(){
     const deletarProduto = async ()=>{
         const resposta = await deleteProduto(produto.id_produto)
 
-        console.log(resposta)
-
         if(resposta.mensagem == 'Produto deletado com sucesso'){
             setAlertMessage('Produto removido com sucesso')
             setAlert(true)
             setEditado(true);
+            document.forms[0][0].selectedIndex = 0;
         }
         else 
             setAlertMessage('Produto não pode ser deletado')
@@ -159,7 +178,7 @@ export default function TelaEdicaoProduto(){
                         <label >Produto editado: </label>
                         <select 
                             name     = "select"
-                            onChange = { e => handleProduto('id_produto', e.target.value) }
+                            onChange = { e => handleProduto('id_produto', e.target.value) | setSelectClicado(!selectClicado)} 
                             required = "required"
                         > 
                             <option value="">Selecione um ítem</option>

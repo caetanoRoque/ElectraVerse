@@ -5,12 +5,15 @@ import Return from "../../assets/return.svg"
 import { LoginContext } from "../../context/LoginContext"
 import { useNavigate } from "react-router-dom"
 import ProdutoCarrinho from '../../components/produto-carrinho/ProdutoCarrinho';
+import Alert from '../../components/alert/Alert';
 
 export default function TelaCarrinho() {
 
     const { deslogarCliente } = useContext(LoginContext);
 
     const [produtos,setProdutos] = useState([]);
+    const [alert, setAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const navigate = useNavigate();
 
@@ -29,8 +32,7 @@ export default function TelaCarrinho() {
     },[])
 
     const handleDeslogar = () => {
-        localStorage.removeItem('clienteEmail');
-        localStorage.removeItem('clienteSenha');
+        localStorage.clear()
         deslogarCliente();
     }
 
@@ -55,7 +57,29 @@ export default function TelaCarrinho() {
 
 
     const comprar = async () => {
-        navigate('/tela-finalizacao-compra')    
+        let carrinho = JSON.parse(localStorage.carrinho)
+        let tudoZerado = true;
+
+        for(let produto of carrinho){
+            if(produto.estoqueSelecionado > 0){
+                tudoZerado = false;
+            }
+        }
+        
+        if(tudoZerado){
+            setAlertMessage('Quantidade de produtos selecionados inválida');
+            setAlert(true);
+        }
+
+        else if(JSON.parse(localStorage.carrinho).estoqueSelecionado == 0){
+            setAlert(true)
+        }
+        else if(localStorage.carrinho){
+            navigate('/tela-finalizacao-compra')    
+        }
+        else{
+            setAlert(true)
+        }
     }
 
     return (
@@ -68,6 +92,8 @@ export default function TelaCarrinho() {
             <div className="container">
                 {mapProdutos()}
             </div>
+
+            {alert && <Alert message={alertMessage} setAlert={setAlert}/>}
         </section>
     )
 }

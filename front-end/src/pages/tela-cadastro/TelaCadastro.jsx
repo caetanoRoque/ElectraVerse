@@ -4,6 +4,8 @@ import { criarCliente } from '../../connectApi/cliente'
 import { criarVendedor } from '../../connectApi/vendedor'
 import { useNavigate } from 'react-router-dom'
 import Alert from '../../components/alert/Alert'
+import Return from '../../assets/return.svg'
+
 
 export default function TelaCadastro(){
     const [nome, setNome] = useState()
@@ -17,6 +19,7 @@ export default function TelaCadastro(){
     
     const [alertMessage, setAlertMessage] = useState('');
     const [sucesso, setSucesso] = useState(false);
+    
     
     const onCloseAlert = () => {
         if(sucesso){
@@ -60,9 +63,14 @@ export default function TelaCadastro(){
             } 
         }  
     }
+
+    const handleVoltar = () => {
+        navigate("/")
+    }
     
     return(
         <section className='tela-cadastro'>
+        <button className="editar" onClick={() => handleVoltar()}><img src={Return} alt="Voltar" /></button>
         <div className="box">
             <form onSubmit={()=>handleCadastro(event)}>
                 <h2>Cadastro</h2>

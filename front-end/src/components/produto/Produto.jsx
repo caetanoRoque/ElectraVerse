@@ -32,7 +32,7 @@ export default function Produto({produto, setAlert}){
     }
 
     return(
-        <div className="produto">
+        <div className="produto" title={produto.descricao}>
             
             <p className="estoque">{produto.estoque} un</p>
 
@@ -42,7 +42,7 @@ export default function Produto({produto, setAlert}){
                 </figure>
                 <div className="info">
                     <p>{produto.nome}</p>
-                    <label>R$ {produto.preco?.replace('.',',')}</label>
+                    <label>R$ {Number(produto.preco)?.toFixed(2).toString().replace('.',',')}</label>
                 </div>
                 
             </article>

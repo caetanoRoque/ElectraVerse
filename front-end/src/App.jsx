@@ -5,8 +5,14 @@ import { getVendedor } from './connectApi/vendedor';
 import { LoginContext } from './context/LoginContext';
 
 export default function Rotas(){
-  const {clienteLogado, vendedorLogado, logarCliente, logarVendedor} = useContext(LoginContext);
-  const [tentandoLogar, setTentandoLogar] = useState(true); 
+  const {
+    clienteLogado, 
+    vendedorLogado, 
+    logarCliente, 
+    logarVendedor, 
+    tentandoLogar, 
+    setTentandoLogar } = useContext(LoginContext);
+  
   const [acessandoUrlManualmente, seAcessandoUrlManualmente] = useState(0);
 
   const clientePaths = [
@@ -29,6 +35,7 @@ export default function Rotas(){
 
   useEffect(()=>{
 
+    // SE JÁ EXISTIR UM CLIENTE NO localstorage, TENTAR LOGAR
     if(localStorage.clienteEmail && localStorage.clienteSenha){
 
       setTentandoLogar(true);
@@ -40,7 +47,8 @@ export default function Rotas(){
         }
       })
     }
-    
+
+    // SE JÁ EXISTIR UM VENDEDOR NO localstorage, TENTAR LOGAR
     else if(localStorage.vendedorEmail && localStorage.vendedorSenha){
       setTentandoLogar(true)
       let email = localStorage.vendedorEmail;
@@ -93,7 +101,6 @@ export default function Rotas(){
         navigate(path)
       }
     }
-    
   },[clienteLogado,vendedorLogado, acessandoUrlManualmente])
     
     return (

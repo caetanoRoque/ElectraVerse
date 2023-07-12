@@ -30,13 +30,40 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
-    padding: 20px;
+    gap: 20px;
+    padding: 30px 50px;
     border-radius: 8px;
+    box-shadow: 5px 5px 20px black, 5px 5px 20px black;
 
 }
 
 .tela-finalizacao-compra .preco{
     display: flex;
     gap:10px;
+}
+
+.tela-finalizacao-compra .box button{
+    width: 200px;
+    height: 50px;
+    font-weight: 600;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgb(34, 219, 34);
+}
+
+.tela-finalizacao-compra .box button:hover{
+    cursor: pointer;
+    background-color: rgb(98, 255, 98);
+}
+
+.tela-finalizacao-compra .box h1{
+    font-size: 30px;
+}
+
+.tela-finalizacao-compra .box input{
+    width: 200px;
+    height: 30px;
+    /* word-wrap: ; */
+    border: 1px solid #ccc;
 }

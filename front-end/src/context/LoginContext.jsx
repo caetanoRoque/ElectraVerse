@@ -5,6 +5,7 @@ export const LoginContext = createContext();
 export const LoginProvider = ({children}) => {
     const [clienteLogado, setClienteLogado] = useState(false);
     const [vendedorLogado, setVendedorLogado] = useState(false);
+    const [tentandoLogar, setTentandoLogar] = useState(true);
 
     const logarCliente =     () => setClienteLogado(true);
     const logarVendedor =    () => setVendedorLogado(true);
@@ -19,7 +20,9 @@ export const LoginProvider = ({children}) => {
             logarCliente,
             logarVendedor,
             deslogarCliente,
-            deslogarVendedor
+            deslogarVendedor,
+            tentandoLogar,
+            setTentandoLogar,
             
         }}>{children}</LoginContext.Provider>
     )

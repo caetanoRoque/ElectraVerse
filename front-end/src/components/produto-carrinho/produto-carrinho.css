@@ -89,6 +89,10 @@
     color: white;
 }
 
+.produto-carrinho .mudarEstoque button:hover{
+    cursor: pointer;
+}
+
 .produto-carrinho .mudarEstoque  .menos{
     background-color: red;
 }
